@@ -1,10 +1,10 @@
-# Project: Fleets Seguros
+# Projeto: Fleets Seguros
 
 #
 
 #
 
-##### About the application:
+##### Informçao da Aplicação:
 
 > POC desenvolvido para realizar uma carga de frotas de veículos
-> os valores recebidos por uma planilha em excel.
+> por uma importação de uma planilha em excel.
