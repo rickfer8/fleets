@@ -26,7 +26,7 @@ CREATE TABLE IF NOT EXISTS usuario
   cpf character varying(14),
   data_nascimento date,
   email character varying(60),
-  senha character varying(60),
+  senha character varying(64),
   ativo boolean,
   id_perfil integer NOT NULL,
   CONSTRAINT pk_usuario PRIMARY KEY (id ),
