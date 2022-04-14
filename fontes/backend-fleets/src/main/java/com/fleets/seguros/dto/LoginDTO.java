@@ -16,6 +16,6 @@ public class LoginDTO {
 	private String email;
 	
 	@NotBlank(message = "Senha Obrigatório")
-	private String password;
+	private String senha;
 
 }
