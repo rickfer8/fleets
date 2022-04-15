@@ -20,6 +20,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.fleets.seguros.dto.LoginDTO;
 import com.fleets.seguros.dto.UsuarioDTO;
 import com.fleets.seguros.model.Usuario;
+import com.fleets.seguros.seguranca.CurrentUser;
 import com.fleets.seguros.seguranca.JwtManager;
 import com.fleets.seguros.service.PerfilService;
 import com.fleets.seguros.service.UsuarioService;
@@ -34,9 +35,11 @@ public class UsuarioController {
 	@Autowired
 	private PerfilService perfilService;
 	
-	@Autowired private AuthenticationManager authManager;
+	@Autowired 
+	private AuthenticationManager authManager;
 	
-	@Autowired private JwtManager jwtManager;
+	@Autowired 
+	private JwtManager jwtManager;
 	
 	@PostMapping
 	public ResponseEntity<Usuario> save(@RequestBody @Valid UsuarioDTO usuarioDto){
@@ -47,7 +50,7 @@ public class UsuarioController {
 	}
 	
 	@PostMapping("/login")
-	public ResponseEntity<String> login(@RequestBody @Valid LoginDTO login){
+	public ResponseEntity<CurrentUser> login(@RequestBody @Valid LoginDTO login){
 		
 		UsernamePasswordAuthenticationToken token = new UsernamePasswordAuthenticationToken(login.getEmail(), login.getSenha());		
 		Authentication auth = authManager.authenticate(token);
@@ -63,8 +66,10 @@ public class UsuarioController {
 				   						.collect(Collectors.toList());
 		
 		String jwt = jwtManager.createToken(email, roles);
+		Usuario usuario = usuarioService.findByEmail(email);
+		CurrentUser currentUser = new CurrentUser(jwt, usuario);
 		
-		return ResponseEntity.ok(jwt);
+		return ResponseEntity.ok(currentUser);
 	}
 
 }

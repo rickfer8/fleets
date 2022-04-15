@@ -68,5 +68,10 @@ public class UsuarioService implements UserDetailsService {
 		
 		return usuarioSpring;
 	}
+	
+	public Usuario findByEmail(String email) {
+		Optional<Usuario> retorno = usuarioDAO.findByEmail(email);
+		return retorno.orElseThrow(() -> new NaoEncontradoException(Constante.ERRO_ID_NAO_ENCONTRADO + email));
+	}
 
 }

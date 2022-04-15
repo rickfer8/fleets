@@ -15,6 +15,7 @@ import javax.persistence.TemporalType;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fleets.seguros.dto.UsuarioDTO;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -59,5 +60,17 @@ public class Usuario implements Serializable {
 	@ManyToOne
 	@JoinColumn(name = "id_perfil", nullable = false)
 	private Perfil perfil;
+	
+	
+	public UsuarioDTO mapper() {
+		return new UsuarioDTO().builder()
+							.nome(nome)
+							.email(email)
+							.senha(senha)
+							.cpf(cpf)
+							.dataNascimento(dataNascimento)
+							.ativo(Boolean.TRUE)							
+							.build();		
+	}
 
 }
