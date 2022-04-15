@@ -1,5 +1,6 @@
 package com.fleets.seguros.service;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,8 +17,7 @@ public class PerfilService {
 	
 	@Autowired
 	private PerfilDAO perfilDAO;
-	
-	
+		
 	public Perfil getById(Long id) {
 		Optional<Perfil> retorno = perfilDAO.findById(id);		
 		return retorno.orElseThrow(() -> new NaoEncontradoException(Constante.ERRO_ID_NAO_ENCONTRADO + id ));				
@@ -26,6 +26,10 @@ public class PerfilService {
 	public Perfil getByDescricao(PerfilEnum perfilEnum) {
 		Optional<Perfil> retorno = perfilDAO.findDescricao(perfilEnum.name());		
 		return retorno.orElseThrow(() -> new NaoEncontradoException(Constante.ERRO_DESCRICAO_NAO_ENCONTRADO + perfilEnum.name() ));				
+	}
+	
+	public List<Perfil> findAll(){
+		return perfilDAO.findAll();
 	}
 
 }

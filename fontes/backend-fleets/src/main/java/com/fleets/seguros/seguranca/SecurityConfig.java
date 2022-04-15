@@ -25,7 +25,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	
 	@Override
 	protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-		
 		auth.userDetailsService(usuarioService).passwordEncoder(customSenha);		
 		super.configure(auth);
 	}
@@ -33,6 +32,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	@Override
 	public void configure(WebSecurity web) throws Exception {
 		web.ignoring().antMatchers(HttpMethod.POST,"/usuarios/login");
+		web.ignoring().antMatchers(HttpMethod.GET,"/perfis/");
 	}
 	
 	@Bean(name = BeanIds.AUTHENTICATION_MANAGER)
