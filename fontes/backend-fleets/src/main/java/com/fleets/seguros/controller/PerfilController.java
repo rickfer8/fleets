@@ -7,6 +7,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.fleets.seguros.model.Perfil;
@@ -29,6 +30,12 @@ public class PerfilController {
 	public ResponseEntity<Perfil> findById(@PathVariable Long id) {
 		Perfil perfil = service.getById(id);
 		return ResponseEntity.ok(perfil);
+	}
+
+	@GetMapping("/filter")
+	public ResponseEntity<List<Perfil>> findPerfil(@RequestParam String sigla, @RequestParam String descricao) {
+		List<Perfil> perfils = service.findBySiglaOrDescricao(sigla, descricao);
+		return ResponseEntity.ok(perfils);
 	}
 
 }
