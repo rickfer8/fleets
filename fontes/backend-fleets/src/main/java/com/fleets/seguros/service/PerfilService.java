@@ -5,6 +5,7 @@ import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.fleets.seguros.constante.Constante;
 import com.fleets.seguros.enuns.PerfilEnum;
@@ -39,6 +40,11 @@ public class PerfilService {
 		Optional<Perfil> retorno = perfilDAO.findDescricao(perfilEnum.name());
 		return retorno.orElseThrow(
 				() -> new NaoEncontradoException(Constante.ERRO_DESCRICAO_NAO_ENCONTRADO + perfilEnum.name()));
+	}
+
+	@Transactional
+	public void deleteById(Long id) {
+		perfilDAO.deleteById(id);
 	}
 
 }

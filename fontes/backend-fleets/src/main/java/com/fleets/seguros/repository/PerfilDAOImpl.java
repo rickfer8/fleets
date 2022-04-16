@@ -51,7 +51,7 @@ public class PerfilDAOImpl {
 			Perfil perfil = new Perfil();
 			perfil.setId(((Integer) p[0]).longValue());
 			perfil.setSigla((String) p[1]);
-			perfil.setDescricao(PerfilEnum.valueOf((String) p[2]));
+			perfil.setDescricao((String) p[2]);
 
 			return perfil;
 		}).collect(Collectors.toList());
