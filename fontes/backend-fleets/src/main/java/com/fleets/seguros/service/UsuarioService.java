@@ -19,7 +19,7 @@ import com.fleets.seguros.repository.UsuarioDAO;
 import com.fleets.seguros.util.HashUtil;
 
 @Service
-public class UsuarioService implements UserDetailsService {
+public class UsuarioService {
 	
 	@Autowired
 	private UsuarioDAO usuarioDAO;
@@ -52,21 +52,6 @@ public class UsuarioService implements UserDetailsService {
 		senha = HashUtil.getSecureHash(senha);
 		Optional<Usuario> retorno = usuarioDAO.login(email, senha);
 		return retorno.get();
-	}
-
-	@Override
-	public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
-		Optional<Usuario> retorno = usuarioDAO.findByEmail(email);
-		
-		if(!retorno.isPresent()) throw new UsernameNotFoundException("ERRO_EMAIL_NAO_ENCONTRADO " + email);
-		
-		Usuario usuario = retorno.get();
-		
-		List<GrantedAuthority> authorities = Arrays.asList(new SimpleGrantedAuthority("ROLE_" + usuario.getPerfil().getDescricao()));
-		
-		org.springframework.security.core.userdetails.User usuarioSpring = new org.springframework.security.core.userdetails.User(usuario.getEmail(), usuario.getSenha(), authorities);
-		
-		return usuarioSpring;
 	}
 	
 	public Usuario findByEmail(String email) {

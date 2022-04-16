@@ -1,4 +1,4 @@
-package com.fleets.seguros.seguranca;
+package com.fleets.seguros.security.filter;
 
 import java.io.IOException;
 
@@ -50,4 +50,3 @@ public class SimpleCORSFilter implements Filter {
 	public void destroy() {
 	}
 }
-
