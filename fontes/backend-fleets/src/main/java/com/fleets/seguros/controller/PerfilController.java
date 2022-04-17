@@ -8,10 +8,13 @@ import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.fleets.seguros.dto.PerfilDTO;
 import com.fleets.seguros.model.Perfil;
 import com.fleets.seguros.service.PerfilService;
 
@@ -38,9 +41,17 @@ public class PerfilController {
 
 	@GetMapping("/filter")
 	@PreAuthorize("hasAnyAuthority('ADM','DEV')")
-	public ResponseEntity<List<Perfil>> findPerfil(@RequestParam String sigla, @RequestParam String descricao) {
+	public ResponseEntity<List<Perfil>> find(@RequestParam String sigla, @RequestParam String descricao) {
 		List<Perfil> perfils = service.findBySiglaOrDescricao(sigla, descricao);
 		return ResponseEntity.ok(perfils);
+	}
+	
+	@PostMapping
+	@PreAuthorize("hasAnyAuthority('ADM','DEV')")
+	public ResponseEntity<Perfil> save(@RequestBody PerfilDTO dto) {
+		Perfil perfil = dto.mapper();
+		perfil = service.save(perfil);
+		return ResponseEntity.ok(perfil);
 	}
 
 	@DeleteMapping("/{id}")

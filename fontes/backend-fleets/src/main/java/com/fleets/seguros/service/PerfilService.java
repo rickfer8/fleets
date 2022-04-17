@@ -36,6 +36,11 @@ public class PerfilService {
 		return perfilDAOImpl.findBySiglaOrDescricao(sigla, descricao);
 	}
 
+	public Perfil save(Perfil perfil) {
+		perfil.setSigla(perfil.getSigla().toUpperCase());
+		return perfilDAO.save(perfil);
+	}
+
 	public Perfil getByDescricao(PerfilEnum perfilEnum) {
 		Optional<Perfil> retorno = perfilDAO.findDescricao(perfilEnum.name());
 		return retorno.orElseThrow(
