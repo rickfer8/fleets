@@ -1,7 +1,5 @@
 package com.fleets.seguros.dto;
 
-import lombok.Data;
-
 import java.util.Date;
 
 import javax.validation.constraints.Email;
@@ -10,10 +8,17 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 import com.fleets.seguros.enuns.PerfilEnum;
-import com.fleets.seguros.model.Perfil;
 import com.fleets.seguros.model.Usuario;
 
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
 @Data
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
 public class UsuarioDTO {
 	
 	@NotBlank(message = "Nome Obrigatório")
@@ -29,6 +34,8 @@ public class UsuarioDTO {
 	private String cpf;	
 	
 	private Date dataNascimento;
+	
+	private boolean ativo;
 	
 	@NotNull(message = "Perfil Obrigatorio")
 	private PerfilEnum perfilEnum;	
