@@ -1,7 +1,6 @@
 package com.fleets.seguros.model;
 
 import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.Column;
@@ -41,16 +40,15 @@ public class Perfil implements Serializable {
 
 	@Getter(onMethod = @__({ @JsonIgnore }))
 	@OneToMany(mappedBy = "perfil")
-	private List<Usuario> usuarios = new ArrayList<>();
+	private List<Usuario> usuarios;
+
+	public Perfil(Long id) {
+		super();
+		this.id = id;
+	}
 
 	public PerfilDTO mapper() {
-		new PerfilDTO();
-		return PerfilDTO
-				.builder()
-				.id(id)
-				.sigla(sigla)
-				.descricao(descricao)
-				.build();
+		return PerfilDTO.builder().id(id).sigla(sigla).descricao(descricao).build();
 	}
 
 }

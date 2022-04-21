@@ -1,18 +1,14 @@
 package com.fleets.seguros.service;
 
-import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.authority.SimpleGrantedAuthority;
-import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.core.userdetails.UserDetailsService;
-import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.fleets.seguros.constante.Constante;
+import com.fleets.seguros.exception.ExcluiRegistroException;
 import com.fleets.seguros.exception.NaoEncontradoException;
 import com.fleets.seguros.model.Usuario;
 import com.fleets.seguros.repository.UsuarioDAO;
@@ -23,6 +19,15 @@ public class UsuarioService {
 	
 	@Autowired
 	private UsuarioDAO usuarioDAO;
+	
+	public List<Usuario> findAll(){
+		return usuarioDAO.findAll();
+	}
+	
+	public Usuario getById(Long id) {
+		Optional<Usuario> retorno = usuarioDAO.findById(id);		
+		return retorno.orElseThrow(() -> new NaoEncontradoException(Constante.ERRO_ID_NAO_ENCONTRADO + id ));				
+	}
 	
 	public Usuario save(Usuario usuario) {
 		String hash = HashUtil.getSecureHash(usuario.getSenha());
@@ -38,25 +43,18 @@ public class UsuarioService {
 		return usuarioAtualizado;
 	}
 	
-	public Usuario getById(Long id) {
-		Optional<Usuario> retorno = usuarioDAO.findById(id);		
-		return retorno.orElseThrow(() -> new NaoEncontradoException(Constante.ERRO_ID_NAO_ENCONTRADO + id ));				
-	}
-	
-	public List<Usuario> listAll(){
-		List<Usuario> usuarios = usuarioDAO.findAll();
-		return usuarios;
-	}
-	
-	public Usuario login(String email, String senha) {
-		senha = HashUtil.getSecureHash(senha);
-		Optional<Usuario> retorno = usuarioDAO.login(email, senha);
-		return retorno.get();
-	}
-	
 	public Usuario findByEmail(String email) {
 		Optional<Usuario> retorno = usuarioDAO.findByEmail(email);
 		return retorno.orElseThrow(() -> new NaoEncontradoException(Constante.ERRO_ID_NAO_ENCONTRADO + email));
+	}
+	
+	@Transactional
+	public void deleteById(Long id) {
+		try {
+			usuarioDAO.deleteById(id);
+		} catch (Exception e) {
+			throw new ExcluiRegistroException(Constante.ERRO_EXCLUI_REGISTROS + id);
+		}
 	}
 
 }

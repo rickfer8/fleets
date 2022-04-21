@@ -19,14 +19,13 @@ public class PerfilDTO {
 	private String sigla;
 	private String descricao;
 
+	public PerfilDTO(Long id) {
+		super();
+		this.id = id;
+	}
+
 	public Perfil mapper() {
-		new Perfil();
-		return Perfil
-				.builder()
-				.id(id)
-				.sigla(sigla)
-				.descricao(descricao)
-				.build();
+		return Perfil.builder().id(id).sigla(sigla).descricao(descricao).build();
 	}
 
 }

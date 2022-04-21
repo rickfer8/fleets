@@ -9,6 +9,8 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.fleets.seguros.constante.Constante;
 import com.fleets.seguros.enuns.PerfilEnum;
+import com.fleets.seguros.exception.CadastroRegistroException;
+import com.fleets.seguros.exception.ExcluiRegistroException;
 import com.fleets.seguros.exception.NaoEncontradoException;
 import com.fleets.seguros.model.Perfil;
 import com.fleets.seguros.repository.PerfilDAO;
@@ -37,8 +39,12 @@ public class PerfilService {
 	}
 
 	public Perfil save(Perfil perfil) {
-		perfil.setSigla(perfil.getSigla().toUpperCase());
-		return perfilDAO.save(perfil);
+		try {
+			perfil.setSigla(perfil.getSigla().toUpperCase());
+			return perfilDAO.save(perfil);
+		} catch (Exception e) {
+			throw new CadastroRegistroException(Constante.ERRO_CADASTRO_REGISTROS);
+		}
 	}
 
 	public Perfil getByDescricao(PerfilEnum perfilEnum) {
@@ -49,7 +55,11 @@ public class PerfilService {
 
 	@Transactional
 	public void deleteById(Long id) {
-		perfilDAO.deleteById(id);
+		try {
+			perfilDAO.deleteById(id);
+		} catch (Exception e) {
+			throw new ExcluiRegistroException(Constante.ERRO_EXCLUI_REGISTROS + id);
+		}
 	}
 
 }

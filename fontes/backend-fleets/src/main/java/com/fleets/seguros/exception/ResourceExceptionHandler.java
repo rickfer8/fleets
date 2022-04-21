@@ -21,16 +21,20 @@ public class ResourceExceptionHandler extends ResponseEntityExceptionHandler {
 	
 	@ExceptionHandler(NaoEncontradoException.class)
 	public ResponseEntity<ApiError> handleNotFoundException(NaoEncontradoException ex) {
-
 		ApiError error = new ApiError(HttpStatus.NOT_FOUND.value(), ex.getMessage(), new Date());
 		return ResponseEntity.status(HttpStatus.NOT_FOUND).body(error);
 	}
 	
 	@ExceptionHandler(BadCredentialsException.class)
 	public ResponseEntity<ApiError> handleBadCredentialsException(BadCredentialsException ex){
-		ApiError error = new ApiError(HttpStatus.UNAUTHORIZED.value(), ex.getMessage(), new Date()); 
-		
+		ApiError error = new ApiError(HttpStatus.UNAUTHORIZED.value(), ex.getMessage(), new Date()); 		
 		return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(error);
+	}
+	
+	@ExceptionHandler({ ExcluiRegistroException.class, CadastroRegistroException.class })
+	public ResponseEntity<ApiError> handleInternalServerErrorException(Exception ex) {
+		ApiError error = new ApiError(HttpStatus.INTERNAL_SERVER_ERROR.value(), ex.getMessage(), new Date());
+		return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(error);
 	}
 
 	@Override
