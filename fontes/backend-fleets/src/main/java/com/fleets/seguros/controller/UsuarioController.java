@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.fleets.seguros.dto.UsuarioDTO;
@@ -33,12 +34,20 @@ public class UsuarioController {
 		List<Usuario> usuarios = service.findAll();
 		return ResponseEntity.ok(usuarios);
 	}
-	
+
 	@GetMapping("/{id}")
 	@PreAuthorize("hasAnyAuthority('ADM','DEV')")
 	public ResponseEntity<Usuario> findById(@PathVariable Long id) {
 		Usuario usuario = service.getById(id);
-		return ResponseEntity.ok(usuario	);
+		return ResponseEntity.ok(usuario);
+	}
+
+	@GetMapping("/filter")
+	@PreAuthorize("hasAnyAuthority('ADM','DEV')")
+	public ResponseEntity<List<Usuario>> find(@RequestParam String nome, @RequestParam String email,
+			@RequestParam Integer idPerfil, @RequestParam Boolean ativo) {
+		List<Usuario> usuarios = service.findByNomeOrEmailOrPerfil(nome, email, idPerfil, ativo);
+		return ResponseEntity.ok(usuarios);
 	}
 
 	@PostMapping
@@ -48,7 +57,7 @@ public class UsuarioController {
 		usuario = service.save(usuario);
 		return ResponseEntity.status(HttpStatus.CREATED).body(usuario);
 	}
-	
+
 	@DeleteMapping("/{id}")
 	@PreAuthorize("hasAnyAuthority('ADM','DEV')")
 	public ResponseEntity<Void> deleteById(@PathVariable Long id) {

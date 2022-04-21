@@ -12,6 +12,7 @@ import com.fleets.seguros.exception.ExcluiRegistroException;
 import com.fleets.seguros.exception.NaoEncontradoException;
 import com.fleets.seguros.model.Usuario;
 import com.fleets.seguros.repository.UsuarioDAO;
+import com.fleets.seguros.repository.UsuarioDAOImpl;
 import com.fleets.seguros.util.HashUtil;
 
 @Service
@@ -20,6 +21,9 @@ public class UsuarioService {
 	@Autowired
 	private UsuarioDAO usuarioDAO;
 	
+	@Autowired
+	private UsuarioDAOImpl usuarioDAOImpl;
+	
 	public List<Usuario> findAll(){
 		return usuarioDAO.findAll();
 	}
@@ -27,6 +31,10 @@ public class UsuarioService {
 	public Usuario getById(Long id) {
 		Optional<Usuario> retorno = usuarioDAO.findById(id);		
 		return retorno.orElseThrow(() -> new NaoEncontradoException(Constante.ERRO_ID_NAO_ENCONTRADO + id ));				
+	}
+	
+	public List<Usuario> findByNomeOrEmailOrPerfil(String nome, String email, Integer idPerfil, Boolean ativo){
+		return usuarioDAOImpl.findByNomeOrEmailOrPerfil(nome, email, idPerfil, ativo);
 	}
 	
 	public Usuario save(Usuario usuario) {
