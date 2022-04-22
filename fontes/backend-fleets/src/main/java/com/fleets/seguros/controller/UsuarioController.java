@@ -53,8 +53,7 @@ public class UsuarioController {
 	@PostMapping
 	@PreAuthorize("hasAnyAuthority('ADM','DEV')")
 	public ResponseEntity<Usuario> save(@RequestBody @Valid UsuarioDTO usuarioDto) {
-		Usuario usuario = usuarioDto.mapper();
-		usuario = service.save(usuario);
+		Usuario usuario = service.save(usuarioDto);
 		return ResponseEntity.status(HttpStatus.CREATED).body(usuario);
 	}
 

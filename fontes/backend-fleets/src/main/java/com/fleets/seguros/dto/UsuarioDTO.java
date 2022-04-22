@@ -20,6 +20,8 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class UsuarioDTO {
+	
+	private Long id;
 
 	@NotBlank(message = "Nome Obrigatório")
 	private String nome;
@@ -27,8 +29,8 @@ public class UsuarioDTO {
 	@Email(message = "E-mail Obrigatório")
 	private String email;
 
-	@Size(min = 7, max = 64, message = "A senha deve estar entre 4 e 64")
 	private String senha;
+	private String confirmaSenha;
 
 	@Size(min = 1, max = 14, message = "CPF deve estar entre 1 e 14 ")
 	private String cpf;
@@ -38,11 +40,11 @@ public class UsuarioDTO {
 	private boolean ativo;
 
 	@NotNull(message = "Perfil Obrigatorio")
-	private PerfilDTO perfilDTO;
+	private PerfilDTO perfil;
 
 	public Usuario mapper() {
-		return Usuario.builder().nome(nome).email(email).senha(senha).cpf(cpf).dataNascimento(dataNascimento)
-				.ativo(Boolean.TRUE).perfil(new Perfil(perfilDTO.getId())).build();
+		return Usuario.builder().id(id).nome(nome).email(email).senha(senha).cpf(cpf).dataNascimento(dataNascimento)
+				.ativo(ativo).perfil(new Perfil(perfil.getId())).build();
 	}
 
 }

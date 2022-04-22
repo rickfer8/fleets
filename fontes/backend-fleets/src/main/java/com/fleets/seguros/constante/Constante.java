@@ -8,6 +8,7 @@ public class Constante {
 	public static final String ERRO_CAMPOS_INVALIDOS = "Campos Inválidos ";
 	public static final String ERRO_EXCLUI_REGISTROS = "Não foi possível excluir o registro ";
 	public static final String ERRO_CADASTRO_REGISTROS = "Não foi possível cadastrar o registro";
+	public static final String ERRO_SENHA_USUARIO = "Campo senha e confirma senha estão diferentes";
 
 	public static final int JWT_EXP_DAYS = 1;
 	public static final String API_KEY = "fleets-seguros";

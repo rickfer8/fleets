@@ -6,7 +6,6 @@ import java.util.Date;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -35,7 +34,7 @@ public class Usuario implements Serializable {
 	private static final long serialVersionUID = 5682348415685117787L;
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@GeneratedValue(generator = "seq_usuario")
 	private Long id;
 
 	@Column(length = 60, nullable = false)
@@ -64,8 +63,8 @@ public class Usuario implements Serializable {
 	private Perfil perfil;
 
 	public UsuarioDTO mapper() {
-		return UsuarioDTO.builder().nome(nome).email(email).senha(senha).cpf(cpf).dataNascimento(dataNascimento)
-				.perfilDTO(new PerfilDTO(perfil.getId())).ativo(Boolean.TRUE).build();
+		return UsuarioDTO.builder().id(id).nome(nome).email(email).senha(senha).cpf(cpf).dataNascimento(dataNascimento)
+				.perfil(new PerfilDTO(perfil.getId())).ativo(Boolean.TRUE).build();
 	}
 
 }
