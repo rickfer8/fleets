@@ -12,7 +12,6 @@ import javax.persistence.Query;
 import org.springframework.stereotype.Repository;
 import org.springframework.util.StringUtils;
 
-import com.fleets.seguros.enuns.PerfilEnum;
 import com.fleets.seguros.model.Perfil;
 
 @Repository
@@ -46,8 +45,8 @@ public class PerfilDAOImpl {
 			query.setParameter(key, value);
 		});
 
-		List<Object[]> resultados = query.getResultList();
-		return resultados.stream().map(p -> {
+		List<Object[]> perfis = query.getResultList();
+		return perfis.stream().map(p -> {
 			Perfil perfil = new Perfil();
 			perfil.setId(((Integer) p[0]).longValue());
 			perfil.setSigla((String) p[1]);
