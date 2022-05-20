@@ -10,8 +10,8 @@ import com.fleets.seguros.model.Perfil;
 
 @Repository
 public interface PerfilDAO extends JpaRepository<Perfil, Long> {
-	
-	@Query("SELECT p FROM perfil p WHERE p.descricao = ?1")
+
+	@Query("SELECT p FROM perfil p WHERE p.descricao = :descricao")
 	public Optional<Perfil> findDescricao(String descricao);
 
 }

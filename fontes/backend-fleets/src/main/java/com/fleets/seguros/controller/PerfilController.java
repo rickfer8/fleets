@@ -2,10 +2,7 @@ package com.fleets.seguros.controller;
 
 import java.util.List;
 
-import javax.validation.Valid;
-
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -17,44 +14,44 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.fleets.seguros.dto.UsuarioDTO;
-import com.fleets.seguros.model.Usuario;
-import com.fleets.seguros.service.UsuarioService;
+import com.fleets.seguros.dto.PerfilDTO;
+import com.fleets.seguros.model.Perfil;
+import com.fleets.seguros.service.PerfilService;
 
 @RestController
-@RequestMapping(value = "usuarios")
-public class UsuarioController {
+@RequestMapping(value = "perfis")
+public class PerfilController {
 
 	@Autowired
-	private UsuarioService service;
+	private PerfilService service;
 
 	@GetMapping
 	@PreAuthorize("hasAnyAuthority('ADM','DEV')")
-	public ResponseEntity<List<Usuario>> findAll() {
-		List<Usuario> usuarios = service.findAll();
-		return ResponseEntity.ok(usuarios);
+	public ResponseEntity<List<Perfil>> findAll() {
+		List<Perfil> perfils = service.findAll();
+		return ResponseEntity.ok(perfils);
 	}
 
 	@GetMapping("/{id}")
 	@PreAuthorize("hasAnyAuthority('ADM','DEV')")
-	public ResponseEntity<Usuario> findById(@PathVariable Long id) {
-		Usuario usuario = service.getById(id);
-		return ResponseEntity.ok(usuario);
+	public ResponseEntity<Perfil> findById(@PathVariable Long id) {
+		Perfil perfil = service.getById(id);
+		return ResponseEntity.ok(perfil);
 	}
 
 	@GetMapping("/filter")
 	@PreAuthorize("hasAnyAuthority('ADM','DEV')")
-	public ResponseEntity<List<Usuario>> find(@RequestParam String nome, @RequestParam String email,
-			@RequestParam Integer idPerfil, @RequestParam Boolean ativo) {
-		List<Usuario> usuarios = service.findByNomeOrEmailOrPerfil(nome, email, idPerfil, ativo);
-		return ResponseEntity.ok(usuarios);
+	public ResponseEntity<List<Perfil>> find(@RequestParam String sigla, @RequestParam String descricao) {
+		List<Perfil> perfils = service.findBySiglaOrDescricao(sigla, descricao);
+		return ResponseEntity.ok(perfils);
 	}
-
+	
 	@PostMapping
 	@PreAuthorize("hasAnyAuthority('ADM','DEV')")
-	public ResponseEntity<Usuario> save(@RequestBody @Valid UsuarioDTO usuarioDto) {
-		Usuario usuario = service.save(usuarioDto);
-		return ResponseEntity.status(HttpStatus.CREATED).body(usuario);
+	public ResponseEntity<Perfil> save(@RequestBody PerfilDTO dto) {
+		Perfil perfil = dto.mapper();
+		perfil = service.save(perfil);
+		return ResponseEntity.ok(perfil);
 	}
 
 	@DeleteMapping("/{id}")
