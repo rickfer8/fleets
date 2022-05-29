@@ -20,7 +20,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class UsuarioDTO {
-	
+
 	private Long id;
 
 	@NotBlank(message = "Nome Obrigatório")
@@ -43,8 +43,8 @@ public class UsuarioDTO {
 	private PerfilDTO perfil;
 
 	public Usuario mapper() {
-		return Usuario.builder().id(id).nome(nome).email(email).senha(senha).cpf(cpf).dataNascimento(dataNascimento)
-				.ativo(ativo).perfil(new Perfil(perfil.getId())).build();
+		return Usuario.builder().id(id).nome(nome).email(email).senha(senha).cpf(cpf).ativo(ativo)
+				.perfil(new Perfil(perfil.getId())).build();
 	}
 
 }

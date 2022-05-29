@@ -35,8 +35,8 @@ public class PerfilService {
 		return retorno.orElseThrow(() -> new NaoEncontradoException(Constante.ERRO_ID_NAO_ENCONTRADO + id));
 	}
 
-	public List<Perfil> findBySiglaOrDescricao(String sigla, String descricao) {
-		return perfilDAOImpl.findBySiglaOrDescricao(sigla, descricao);
+	public List<Perfil> findBySiglaOrDescricao(String parametro) {
+		return perfilDAOImpl.findBySiglaOrDescricao(parametro);
 	}
 
 	public Perfil save(Perfil perfil) {

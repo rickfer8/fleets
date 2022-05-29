@@ -1,7 +1,6 @@
 package com.fleets.seguros.model;
 
 import java.io.Serializable;
-import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -9,8 +8,6 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -43,10 +40,6 @@ public class Usuario implements Serializable {
 	@Column(length = 14, nullable = false)
 	private String cpf;
 
-	@Column(name = "data_nascimento", nullable = false, updatable = false)
-	@Temporal(TemporalType.DATE)
-	private Date dataNascimento;
-
 	@Getter(onMethod = @__({ @JsonIgnore }))
 	@Setter(onMethod = @__({ @JsonProperty }))
 	@Column(length = 64, nullable = false)
@@ -63,7 +56,7 @@ public class Usuario implements Serializable {
 	private Perfil perfil;
 
 	public UsuarioDTO mapper() {
-		return UsuarioDTO.builder().id(id).nome(nome).email(email).senha(senha).cpf(cpf).dataNascimento(dataNascimento)
+		return UsuarioDTO.builder().id(id).nome(nome).email(email).senha(senha).cpf(cpf)
 				.perfil(new PerfilDTO(perfil.getId())).ativo(Boolean.TRUE).build();
 	}
 

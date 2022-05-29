@@ -41,11 +41,11 @@ public class PerfilController {
 
 	@GetMapping("/filter")
 	@PreAuthorize("hasAnyAuthority('ADM','DEV')")
-	public ResponseEntity<List<Perfil>> find(@RequestParam String sigla, @RequestParam String descricao) {
-		List<Perfil> perfils = service.findBySiglaOrDescricao(sigla, descricao);
+	public ResponseEntity<List<Perfil>> find(@RequestParam String parametro) {
+		List<Perfil> perfils = service.findBySiglaOrDescricao(parametro);
 		return ResponseEntity.ok(perfils);
 	}
-	
+
 	@PostMapping
 	@PreAuthorize("hasAnyAuthority('ADM','DEV')")
 	public ResponseEntity<Perfil> save(@RequestBody PerfilDTO dto) {

@@ -9,6 +9,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.StringUtils;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.fleets.seguros.constante.Constante;
 import com.fleets.seguros.dto.UsuarioDTO;
@@ -37,8 +38,8 @@ public class UsuarioService {
 		return retorno.orElseThrow(() -> new NaoEncontradoException(Constante.ERRO_ID_NAO_ENCONTRADO + id));
 	}
 
-	public List<Usuario> findByNomeOrEmailOrPerfil(String nome, String email, Integer idPerfil, Boolean ativo) {
-		return usuarioDAOImpl.findByNomeOrEmailOrPerfil(nome, email, idPerfil, ativo);
+	public List<Usuario> findByNomeOrEmailOrPerfil(@RequestParam String parametro) {
+		return usuarioDAOImpl.findByNomeOrEmailOrPerfil(parametro);
 	}
 
 	public Usuario save(UsuarioDTO usuarioDto) {

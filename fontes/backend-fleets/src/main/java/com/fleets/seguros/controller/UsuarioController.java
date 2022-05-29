@@ -44,9 +44,8 @@ public class UsuarioController {
 
 	@GetMapping("/filter")
 	@PreAuthorize("hasAnyAuthority('ADM','DEV')")
-	public ResponseEntity<List<Usuario>> find(@RequestParam String nome, @RequestParam String email,
-			@RequestParam Integer idPerfil, @RequestParam Boolean ativo) {
-		List<Usuario> usuarios = service.findByNomeOrEmailOrPerfil(nome, email, idPerfil, ativo);
+	public ResponseEntity<List<Usuario>> find(@RequestParam String parametro) {
+		List<Usuario> usuarios = service.findByNomeOrEmailOrPerfil(parametro);
 		return ResponseEntity.ok(usuarios);
 	}
 
