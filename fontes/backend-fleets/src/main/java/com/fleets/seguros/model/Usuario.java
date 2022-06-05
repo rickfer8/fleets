@@ -1,63 +1,44 @@
 package com.fleets.seguros.model;
 
-import java.io.Serializable;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
+import javax.persistence.Table;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fleets.seguros.dto.PerfilDTO;
-import com.fleets.seguros.dto.UsuarioDTO;
-
-import lombok.AllArgsConstructor;
-import lombok.Builder;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-@NoArgsConstructor
-@AllArgsConstructor
 @Getter
 @Setter
-@Builder
-@Entity(name = "usuario")
-public class Usuario implements Serializable {
-
-	private static final long serialVersionUID = 5682348415685117787L;
+@Entity
+@Table(name = "usuario")
+public class Usuario {
 
 	@Id
 	@GeneratedValue(generator = "seq_usuario")
+	@Column(name = "id")
 	private Long id;
 
-	@Column(length = 60, nullable = false)
+	@Column(name = "nome")
 	private String nome;
 
-	@Column(length = 14, nullable = false)
+	@Column(name = "cpf")
 	private String cpf;
 
-	@Getter(onMethod = @__({ @JsonIgnore }))
-	@Setter(onMethod = @__({ @JsonProperty }))
-	@Column(length = 64, nullable = false)
+	@Column(name = "senha")
 	private String senha;
 
-	@Column(length = 60, nullable = false, unique = true)
+	@Column(name = "email")
 	private String email;
 
-	@Column
+	@Column(name = "ativo")
 	private boolean ativo;
 
-	@ManyToOne
-	@JoinColumn(name = "id_perfil", nullable = false)
+	@OneToOne
+	@JoinColumn(name = "id_perfil")
 	private Perfil perfil;
-
-	public UsuarioDTO mapper() {
-		return UsuarioDTO.builder().id(id).nome(nome).email(email).senha(senha).cpf(cpf)
-				.perfil(new PerfilDTO(perfil.getId())).ativo(Boolean.TRUE).build();
-	}
 
 }

@@ -1,54 +1,29 @@
 package com.fleets.seguros.model;
 
-import java.io.Serializable;
-import java.util.List;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
+import javax.persistence.Table;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fleets.seguros.dto.PerfilDTO;
-
-import lombok.AllArgsConstructor;
-import lombok.Builder;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Getter
 @Setter
-@Builder
-@NoArgsConstructor
-@AllArgsConstructor
-@Entity(name = "perfil")
-public class Perfil implements Serializable {
-
-	private static final long serialVersionUID = 5564181309426318589L;
+@Entity
+@Table(name = "perfil")
+public class Perfil {
 
 	@Id
 	@GeneratedValue(generator = "seq_perfil")
+	@Column(name = "id")
 	private Long id;
 
-	@Column(length = 10, nullable = false, unique = true)
+	@Column(name = "sigla")
 	private String sigla;
 
-	@Column(length = 60, nullable = false)
+	@Column(name = "descricao")
 	private String descricao;
-
-	@Getter(onMethod = @__({ @JsonIgnore }))
-	@OneToMany(mappedBy = "perfil")
-	private List<Usuario> usuarios;
-
-	public Perfil(Long id) {
-		super();
-		this.id = id;
-	}
-
-	public PerfilDTO mapper() {
-		return PerfilDTO.builder().id(id).sigla(sigla).descricao(descricao).build();
-	}
 
 }

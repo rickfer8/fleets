@@ -9,9 +9,9 @@ import org.springframework.stereotype.Repository;
 import com.fleets.seguros.model.Usuario;
 
 @Repository
-public interface UsuarioDAO extends JpaRepository<Usuario, Long> {
+public interface UsuarioRepository extends JpaRepository<Usuario, Long> {
 
-	@Query("SELECT u FROM usuario u WHERE u.email = ?1")
+	@Query("SELECT u FROM Usuario u WHERE u.email = ?1")
 	public Optional<Usuario> findByEmail(String email);
 
 }

@@ -17,7 +17,7 @@ import com.fleets.seguros.model.Perfil;
 import com.fleets.seguros.model.Usuario;
 
 @Repository
-public class UsuarioDAOImpl {
+public class UsuarioRepositoryImpl {
 
 	@PersistenceContext
 	private EntityManager em;

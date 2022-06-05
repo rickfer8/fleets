@@ -3,7 +3,6 @@ package com.fleets.seguros.service;
 import java.util.List;
 import java.util.Optional;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -14,42 +13,46 @@ import com.fleets.seguros.exception.CadastroRegistroException;
 import com.fleets.seguros.exception.ExcluiRegistroException;
 import com.fleets.seguros.exception.NaoEncontradoException;
 import com.fleets.seguros.model.Perfil;
-import com.fleets.seguros.repository.PerfilDAO;
-import com.fleets.seguros.repository.PerfilDAOImpl;
+import com.fleets.seguros.repository.PerfilRepository;
+import com.fleets.seguros.repository.PerfilRepositoryImpl;
 
+import lombok.RequiredArgsConstructor;
+import lombok.extern.log4j.Log4j2;
+
+@Log4j2
 @Service
+@RequiredArgsConstructor
 public class PerfilService {
 
-	@Autowired
-	private PerfilDAO perfilDAO;
-
-	@Autowired
-	private PerfilDAOImpl perfilDAOImpl;
+	private final PerfilRepository repository;
+	private final PerfilRepositoryImpl repositoryImpl;
 
 	public List<Perfil> findAll() {
-		return perfilDAO.findAll(Sort.by(Sort.Direction.ASC, "descricao"));
+		return repository.findAll(Sort.by(Sort.Direction.ASC, "descricao"));
 	}
 
 	public Perfil getById(Long id) {
-		Optional<Perfil> retorno = perfilDAO.findById(id);
-		return retorno.orElseThrow(() -> new NaoEncontradoException(Constante.ERRO_ID_NAO_ENCONTRADO + id));
+		return repository.findById(id)
+				.orElseThrow(() -> new NaoEncontradoException(Constante.ERRO_ID_NAO_ENCONTRADO + id));
 	}
 
 	public List<Perfil> findBySiglaOrDescricao(String parametro) {
-		return perfilDAOImpl.findBySiglaOrDescricao(parametro);
+		return repositoryImpl.findBySiglaOrDescricao(parametro);
 	}
 
-	public Perfil save(Perfil perfil) {
+	public void save(Perfil perfil) {
+		log.info("salvando perfil {}", perfil);
 		try {
 			perfil.setSigla(perfil.getSigla().toUpperCase());
-			return perfilDAO.save(perfil);
+			repository.saveAndFlush(perfil);
 		} catch (Exception e) {
+			log.error("erro ao salvar perfil", e);
 			throw new CadastroRegistroException(Constante.ERRO_CADASTRO_REGISTROS);
 		}
 	}
 
 	public Perfil getByDescricao(PerfilEnum perfilEnum) {
-		Optional<Perfil> retorno = perfilDAO.findDescricao(perfilEnum.name());
+		Optional<Perfil> retorno = repository.findDescricao(perfilEnum.name());
 		return retorno.orElseThrow(
 				() -> new NaoEncontradoException(Constante.ERRO_DESCRICAO_NAO_ENCONTRADO + perfilEnum.name()));
 	}
@@ -57,8 +60,9 @@ public class PerfilService {
 	@Transactional
 	public void deleteById(Long id) {
 		try {
-			perfilDAO.deleteById(id);
+			repository.deleteById(id);
 		} catch (Exception e) {
+			log.error("erro ao excluir perfil {}", id, e);
 			throw new ExcluiRegistroException(Constante.ERRO_EXCLUI_REGISTROS + id);
 		}
 	}

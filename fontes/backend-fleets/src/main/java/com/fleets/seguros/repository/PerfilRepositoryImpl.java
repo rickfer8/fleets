@@ -15,7 +15,7 @@ import org.springframework.util.StringUtils;
 import com.fleets.seguros.model.Perfil;
 
 @Repository
-public class PerfilDAOImpl {
+public class PerfilRepositoryImpl {
 
 	@PersistenceContext
 	private EntityManager em;
