@@ -1,14 +1,12 @@
 package com.fleets.seguros.service;
 
 import java.util.List;
-import java.util.Optional;
 
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.fleets.seguros.constante.Constante;
-import com.fleets.seguros.enuns.PerfilEnum;
 import com.fleets.seguros.exception.CadastroRegistroException;
 import com.fleets.seguros.exception.ExcluiRegistroException;
 import com.fleets.seguros.exception.NaoEncontradoException;
@@ -51,14 +49,9 @@ public class PerfilService {
 		}
 	}
 
-	public Perfil getByDescricao(PerfilEnum perfilEnum) {
-		Optional<Perfil> retorno = repository.findDescricao(perfilEnum.name());
-		return retorno.orElseThrow(
-				() -> new NaoEncontradoException(Constante.ERRO_DESCRICAO_NAO_ENCONTRADO + perfilEnum.name()));
-	}
-
 	@Transactional
 	public void deleteById(Long id) {
+		log.info("excluindo perfil {}", id);
 		try {
 			repository.deleteById(id);
 		} catch (Exception e) {

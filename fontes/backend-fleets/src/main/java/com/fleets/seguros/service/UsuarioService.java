@@ -1,7 +1,6 @@
 package com.fleets.seguros.service;
 
 import java.util.List;
-import java.util.Optional;
 
 import org.springframework.data.domain.Sort;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -38,8 +37,8 @@ public class UsuarioService {
 	}
 
 	public Usuario getById(Long id) {
-		Optional<Usuario> retorno = repository.findById(id);
-		return retorno.orElseThrow(() -> new NaoEncontradoException(Constante.ERRO_ID_NAO_ENCONTRADO + id));
+		return repository.findById(id)
+				.orElseThrow(() -> new NaoEncontradoException(Constante.ERRO_ID_NAO_ENCONTRADO + id));
 	}
 
 	public List<Usuario> findByNomeOrEmailOrPerfil(@RequestParam String parametro) {
@@ -83,12 +82,13 @@ public class UsuarioService {
 	}
 
 	public Usuario findByEmail(String email) {
-		Optional<Usuario> retorno = repository.findByEmail(email);
-		return retorno.orElseThrow(() -> new NaoEncontradoException(Constante.ERRO_ID_NAO_ENCONTRADO + email));
+		return repository.findByEmail(email)
+				.orElseThrow(() -> new NaoEncontradoException(Constante.ERRO_ID_NAO_ENCONTRADO + email));
 	}
 
 	@Transactional
 	public void deleteById(Long id) {
+		log.info("excluindo usuario {}", id);
 		try {
 			repository.deleteById(id);
 		} catch (Exception e) {
