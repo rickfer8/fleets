@@ -41,8 +41,8 @@ public class UsuarioService {
 				.orElseThrow(() -> new NaoEncontradoException(Constante.ERRO_ID_NAO_ENCONTRADO + id));
 	}
 
-	public List<Usuario> findByNomeOrEmailOrPerfil(@RequestParam String parametro) {
-		return repositoryImpl.findByNomeOrEmailOrPerfil(parametro);
+	public List<Usuario> findUsuario(@RequestParam String parametro) {
+		return repositoryImpl.findUsuario(parametro);
 	}
 
 	public Usuario save(UsuarioDTO dto) {

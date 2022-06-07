@@ -13,6 +13,7 @@ import com.fleets.seguros.exception.ExcluiRegistroException;
 import com.fleets.seguros.exception.NaoEncontradoException;
 import com.fleets.seguros.model.Cotacao;
 import com.fleets.seguros.repository.CotacaoRepository;
+import com.fleets.seguros.repository.CotacaoRepositoryImpl;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
@@ -23,6 +24,7 @@ import lombok.extern.log4j.Log4j2;
 public class CotacaoService {
 
 	private final CotacaoRepository repository;
+	private final CotacaoRepositoryImpl repositoryImpl;
 
 	public List<Cotacao> findAll() {
 		return repository.findAll(Sort.by(Sort.Direction.DESC, "id"));
@@ -31,6 +33,10 @@ public class CotacaoService {
 	public Cotacao getById(Long id) {
 		return repository.findById(id)
 				.orElseThrow(() -> new NaoEncontradoException(Constante.ERRO_ID_NAO_ENCONTRADO + id));
+	}
+
+	public List<Cotacao> findCotacao(String parametro) {
+		return repositoryImpl.findCotacao(parametro);
 	}
 
 	public void save(Cotacao cotacao) {

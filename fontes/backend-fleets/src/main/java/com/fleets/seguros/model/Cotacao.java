@@ -53,7 +53,7 @@ public class Cotacao {
 	private String combustivel;
 
 	@Column(name = "novo")
-	private boolean novo;
+	private Boolean novo;
 
 	@Column(name = "classe_bonus")
 	private String classeBonus;

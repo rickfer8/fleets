@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.fleets.seguros.converter.CotacaoConverter;
@@ -44,6 +45,15 @@ public class CotacaoController {
 		Cotacao cotacao = service.getById(id);
 		CotacaoDTO dto = converter.convertToDto(cotacao);
 		return ResponseEntity.ok(dto);
+	}
+	
+	@GetMapping("/filter")
+	@PreAuthorize("hasAnyAuthority('ADM','DEV')")
+	public ResponseEntity<List<CotacaoDTO>> find(@RequestParam String parametro) {
+		List<CotacaoDTO> cotacoes = service.findCotacao(parametro).stream()
+				.map(converter::convertToDto)
+				.collect(Collectors.toList());
+		return ResponseEntity.ok(cotacoes);
 	}
 	
 	@PostMapping

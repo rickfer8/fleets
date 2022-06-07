@@ -50,9 +50,9 @@ public class PerfilController {
 	@GetMapping("/filter")
 	@PreAuthorize("hasAnyAuthority('ADM','DEV')")
 	public ResponseEntity<List<PerfilDTO>> find(@RequestParam String parametro) {
-		List<PerfilDTO> perfils = service.findBySiglaOrDescricao(parametro).stream()
+		List<PerfilDTO> perfils = service.findPerfil(parametro).stream()
 				.map(converter::convertToDto)
-				.collect(Collectors.toList());;
+				.collect(Collectors.toList());
 		return ResponseEntity.ok(perfils);
 	}
 

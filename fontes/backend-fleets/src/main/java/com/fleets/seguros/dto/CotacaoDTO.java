@@ -20,7 +20,7 @@ public class CotacaoDTO {
 	private Date anoFabricacao;
 	private Date anoModelo;
 	private String combustivel;
-	private boolean novo;
+	private Boolean novo;
 	private String classeBonus;
 	private String cidade;
 	private String uf;

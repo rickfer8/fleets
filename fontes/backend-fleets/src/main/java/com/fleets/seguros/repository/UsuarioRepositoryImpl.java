@@ -8,6 +8,7 @@ import java.util.stream.Collectors;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
+import javax.persistence.Tuple;
 
 import org.springframework.stereotype.Repository;
 import org.springframework.util.StringUtils;
@@ -22,7 +23,7 @@ public class UsuarioRepositoryImpl {
 	@PersistenceContext
 	private EntityManager em;
 
-	public List<Usuario> findByNomeOrEmailOrPerfil(@RequestParam String parametro) {
+	public List<Usuario> findUsuario(@RequestParam String parametro) {
 		Map<String, Object> queryParams = new HashMap<>();
 
 		StringBuilder sql = new StringBuilder();
@@ -39,25 +40,24 @@ public class UsuarioRepositoryImpl {
 
 		sql.append("ORDER BY u.nome ");
 
-		Query query = em.createNativeQuery(sql.toString());
+		Query query = em.createNativeQuery(sql.toString(), Tuple.class);
 		queryParams.forEach(query::setParameter);
 
-		List<Object[]> usuarios = query.getResultList();
-		return usuarios.stream().map(p -> {
+		List<Tuple> usuarios = query.getResultList();
+		return usuarios.stream().map(tupla -> {
 			Usuario usuario = new Usuario();
-			usuario.setId(((Integer) p[0]).longValue());
-			usuario.setNome((String) p[1]);
-			usuario.setEmail((String) p[2]);
-			usuario.setCpf((String) p[3]);
+			usuario.setId(tupla.get("id", Integer.class).longValue());
+			usuario.setNome(tupla.get("nome", String.class));
+			usuario.setEmail(tupla.get("email", String.class));
+			usuario.setCpf(tupla.get("cpf", String.class));
+			usuario.setAtivo(tupla.get("ativo", Boolean.class));
 
 			Perfil perfil = new Perfil();
-			perfil.setId(((Integer) p[4]).longValue());
-			perfil.setSigla((String) p[5]);
-			perfil.setDescricao((String) p[6]);
-
+			perfil.setId(tupla.get("idPerfil", Integer.class).longValue());
+			perfil.setSigla(tupla.get("sigla", String.class));
+			perfil.setDescricao(tupla.get("descricao", String.class));
 			usuario.setPerfil(perfil);
-			usuario.setAtivo((Boolean) p[7]);
-
+			
 			return usuario;
 		}).collect(Collectors.toList());
 	}

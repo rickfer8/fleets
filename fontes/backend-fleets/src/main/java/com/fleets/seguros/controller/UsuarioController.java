@@ -52,9 +52,9 @@ public class UsuarioController {
 	@GetMapping("/filter")
 	@PreAuthorize("hasAnyAuthority('ADM','DEV')")
 	public ResponseEntity<List<UsuarioDTO>> find(@RequestParam String parametro) {
-		List<UsuarioDTO> usuarios = service.findByNomeOrEmailOrPerfil(parametro).stream()
+		List<UsuarioDTO> usuarios = service.findUsuario(parametro).stream()
 				.map(converter::convertToDto)
-				.collect(Collectors.toList());;
+				.collect(Collectors.toList());
 		return ResponseEntity.ok(usuarios);
 	}
 

@@ -34,8 +34,8 @@ public class PerfilService {
 				.orElseThrow(() -> new NaoEncontradoException(Constante.ERRO_ID_NAO_ENCONTRADO + id));
 	}
 
-	public List<Perfil> findBySiglaOrDescricao(String parametro) {
-		return repositoryImpl.findBySiglaOrDescricao(parametro);
+	public List<Perfil> findPerfil(String parametro) {
+		return repositoryImpl.findPerfil(parametro);
 	}
 
 	public void save(Perfil perfil) {
