@@ -2,17 +2,18 @@ package com.fleets.seguros.service;
 
 import java.util.List;
 
+import javax.transaction.Transactional;
+
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 import com.fleets.seguros.constante.Constante;
 import com.fleets.seguros.exception.CadastroRegistroException;
 import com.fleets.seguros.exception.ExcluiRegistroException;
 import com.fleets.seguros.exception.NaoEncontradoException;
-import com.fleets.seguros.model.Perfil;
-import com.fleets.seguros.repository.PerfilRepository;
-import com.fleets.seguros.repository.PerfilRepositoryImpl;
+import com.fleets.seguros.model.Cotacao;
+import com.fleets.seguros.repository.CotacaoRepository;
+import com.fleets.seguros.repository.CotacaoRepositoryImpl;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
@@ -20,42 +21,41 @@ import lombok.extern.log4j.Log4j2;
 @Log4j2
 @Service
 @RequiredArgsConstructor
-public class PerfilService {
+public class CotacaoService {
 
-	private final PerfilRepository repository;
-	private final PerfilRepositoryImpl repositoryImpl;
+	private final CotacaoRepository repository;
+	private final CotacaoRepositoryImpl repositoryImpl;
 
-	public List<Perfil> findAll() {
-		return repository.findAll(Sort.by(Sort.Direction.ASC, "descricao"));
+	public List<Cotacao> findAll() {
+		return repository.findAll(Sort.by(Sort.Direction.DESC, "id"));
 	}
 
-	public Perfil getById(Long id) {
+	public Cotacao getById(Long id) {
 		return repository.findById(id)
 				.orElseThrow(() -> new NaoEncontradoException(Constante.ERRO_ID_NAO_ENCONTRADO + id));
 	}
 
-	public List<Perfil> findPerfil(String parametro) {
-		return repositoryImpl.findPerfil(parametro);
+	public List<Cotacao> findCotacao(String parametro) {
+		return repositoryImpl.findCotacao(parametro);
 	}
 
-	public void save(Perfil perfil) {
-		log.info("salvando perfil {}", perfil);
+	public void save(Cotacao cotacao) {
+		log.info("salvando cotacao {}", cotacao);
 		try {
-			perfil.setSigla(perfil.getSigla().toUpperCase());
-			repository.saveAndFlush(perfil);
+			repository.saveAndFlush(cotacao);
 		} catch (Exception e) {
-			log.error("erro ao salvar perfil", e);
+			log.error("erro ao salvar cotacao", e);
 			throw new CadastroRegistroException(Constante.ERRO_CADASTRO_REGISTROS);
 		}
 	}
 
 	@Transactional
 	public void deleteById(Long id) {
-		log.info("excluindo perfil {}", id);
+		log.info("excluindo cotacao {}", id);
 		try {
 			repository.deleteById(id);
 		} catch (Exception e) {
-			log.error("erro ao excluir perfil {}", id, e);
+			log.error("erro ao excluir cotacao {}", id, e);
 			throw new ExcluiRegistroException(Constante.ERRO_EXCLUI_REGISTROS + id);
 		}
 	}

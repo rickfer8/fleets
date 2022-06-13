@@ -1,8 +1,9 @@
 package com.fleets.seguros.controller;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
-import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -14,44 +15,53 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.fleets.seguros.converter.PerfilConverter;
 import com.fleets.seguros.dto.PerfilDTO;
 import com.fleets.seguros.model.Perfil;
 import com.fleets.seguros.service.PerfilService;
 
+import lombok.RequiredArgsConstructor;
+
 @RestController
 @RequestMapping(value = "perfis")
+@RequiredArgsConstructor
 public class PerfilController {
 
-	@Autowired
-	private PerfilService service;
+	private final PerfilService service;
+	private final PerfilConverter converter;
 
 	@GetMapping
 	@PreAuthorize("hasAnyAuthority('ADM','DEV')")
-	public ResponseEntity<List<Perfil>> findAll() {
-		List<Perfil> perfils = service.findAll();
+	public ResponseEntity<List<PerfilDTO>> findAll() {
+		List<PerfilDTO> perfils = service.findAll().stream()
+				.map(converter::convertToDto)
+				.collect(Collectors.toList());
 		return ResponseEntity.ok(perfils);
 	}
 
 	@GetMapping("/{id}")
 	@PreAuthorize("hasAnyAuthority('ADM','DEV')")
-	public ResponseEntity<Perfil> findById(@PathVariable Long id) {
+	public ResponseEntity<PerfilDTO> findById(@PathVariable Long id) {
 		Perfil perfil = service.getById(id);
-		return ResponseEntity.ok(perfil);
+		PerfilDTO dto = converter.convertToDto(perfil);
+		return ResponseEntity.ok(dto);
 	}
 
 	@GetMapping("/filter")
 	@PreAuthorize("hasAnyAuthority('ADM','DEV')")
-	public ResponseEntity<List<Perfil>> find(@RequestParam String parametro) {
-		List<Perfil> perfils = service.findBySiglaOrDescricao(parametro);
+	public ResponseEntity<List<PerfilDTO>> find(@RequestParam String parametro) {
+		List<PerfilDTO> perfils = service.findPerfil(parametro).stream()
+				.map(converter::convertToDto)
+				.collect(Collectors.toList());
 		return ResponseEntity.ok(perfils);
 	}
 
 	@PostMapping
 	@PreAuthorize("hasAnyAuthority('ADM','DEV')")
-	public ResponseEntity<Perfil> save(@RequestBody PerfilDTO dto) {
-		Perfil perfil = dto.mapper();
-		perfil = service.save(perfil);
-		return ResponseEntity.ok(perfil);
+	public ResponseEntity<Void> save(@RequestBody PerfilDTO dto) {
+		Perfil perfil = converter.convertToEntity(dto);
+		service.save(perfil);
+		return ResponseEntity.status(HttpStatus.CREATED).build();
 	}
 
 	@DeleteMapping("/{id}")

@@ -3,8 +3,6 @@ package com.fleets.seguros.controller;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import javax.validation.Valid;
-
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -17,51 +15,52 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.fleets.seguros.converter.UsuarioConverter;
-import com.fleets.seguros.dto.UsuarioDTO;
-import com.fleets.seguros.model.Usuario;
-import com.fleets.seguros.service.UsuarioService;
+import com.fleets.seguros.converter.CotacaoConverter;
+import com.fleets.seguros.dto.CotacaoDTO;
+import com.fleets.seguros.model.Cotacao;
+import com.fleets.seguros.service.CotacaoService;
 
 import lombok.RequiredArgsConstructor;
 
 @RestController
-@RequestMapping(value = "usuarios")
+@RequestMapping(value = "cotacoes")
 @RequiredArgsConstructor
-public class UsuarioController {
+public class CotacaoController {
 
-	private final UsuarioService service;
-	private final UsuarioConverter converter;
-
+	private final CotacaoService service;
+	private final CotacaoConverter converter;
+	
 	@GetMapping
 	@PreAuthorize("hasAnyAuthority('ADM','DEV')")
-	public ResponseEntity<List<UsuarioDTO>> findAll() {
-		List<UsuarioDTO> usuarios = service.findAll().stream()
+	public ResponseEntity<List<CotacaoDTO>> findAll() {
+		List<CotacaoDTO> cotacaos = service.findAll().stream()
 				.map(converter::convertToDto)
 				.collect(Collectors.toList());
-		return ResponseEntity.ok(usuarios);
+		return ResponseEntity.ok(cotacaos);
 	}
 
 	@GetMapping("/{id}")
 	@PreAuthorize("hasAnyAuthority('ADM','DEV')")
-	public ResponseEntity<UsuarioDTO> findById(@PathVariable Long id) {
-		Usuario usuario = service.getById(id);
-		UsuarioDTO dto = converter.convertToDto(usuario);
+	public ResponseEntity<CotacaoDTO> findById(@PathVariable Long id) {
+		Cotacao cotacao = service.getById(id);
+		CotacaoDTO dto = converter.convertToDto(cotacao);
 		return ResponseEntity.ok(dto);
 	}
-
+	
 	@GetMapping("/filter")
 	@PreAuthorize("hasAnyAuthority('ADM','DEV')")
-	public ResponseEntity<List<UsuarioDTO>> find(@RequestParam String parametro) {
-		List<UsuarioDTO> usuarios = service.findUsuario(parametro).stream()
+	public ResponseEntity<List<CotacaoDTO>> find(@RequestParam String parametro) {
+		List<CotacaoDTO> cotacoes = service.findCotacao(parametro).stream()
 				.map(converter::convertToDto)
 				.collect(Collectors.toList());
-		return ResponseEntity.ok(usuarios);
+		return ResponseEntity.ok(cotacoes);
 	}
-
+	
 	@PostMapping
 	@PreAuthorize("hasAnyAuthority('ADM','DEV')")
-	public ResponseEntity<Void> save(@RequestBody @Valid UsuarioDTO usuarioDto) {
-		service.save(usuarioDto);
+	public ResponseEntity<Void> save(@RequestBody CotacaoDTO dto) {
+		Cotacao cotacao = converter.convertToEntity(dto);
+		service.save(cotacao);
 		return ResponseEntity.status(HttpStatus.CREATED).build();
 	}
 

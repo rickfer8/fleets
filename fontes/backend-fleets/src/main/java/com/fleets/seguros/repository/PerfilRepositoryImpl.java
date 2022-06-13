@@ -8,6 +8,7 @@ import java.util.stream.Collectors;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
+import javax.persistence.Tuple;
 
 import org.springframework.stereotype.Repository;
 import org.springframework.util.StringUtils;
@@ -15,12 +16,12 @@ import org.springframework.util.StringUtils;
 import com.fleets.seguros.model.Perfil;
 
 @Repository
-public class PerfilDAOImpl {
+public class PerfilRepositoryImpl {
 
 	@PersistenceContext
 	private EntityManager em;
 
-	public List<Perfil> findBySiglaOrDescricao(String parametro) {
+	public List<Perfil> findPerfil(String parametro) {
 		Map<String, Object> queryParams = new HashMap<>();
 
 		StringBuilder sql = new StringBuilder();
@@ -35,16 +36,15 @@ public class PerfilDAOImpl {
 
 		sql.append("ORDER BY p.sigla, p.descricao");
 
-		Query query = em.createNativeQuery(sql.toString());
+		Query query = em.createNativeQuery(sql.toString(), Tuple.class);
 		queryParams.forEach(query::setParameter);
 
-		List<Object[]> perfis = query.getResultList();
-		return perfis.stream().map(p -> {
+		List<Tuple> perfis = query.getResultList();
+		return perfis.stream().map(tupla -> {
 			Perfil perfil = new Perfil();
-			perfil.setId(((Integer) p[0]).longValue());
-			perfil.setSigla((String) p[1]);
-			perfil.setDescricao((String) p[2]);
-
+			perfil.setId(tupla.get("id", Integer.class).longValue());
+			perfil.setSigla(tupla.get("sigla", String.class));
+			perfil.setDescricao(tupla.get("descricao", String.class));
 			return perfil;
 		}).collect(Collectors.toList());
 	}
