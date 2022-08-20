@@ -1,0 +1,733 @@
+{
+    "TIPOENDOSSO": {
+        "value": "dadosVeiculo.tipoEndosso",
+        "required": true,
+        "type": "string",
+        "size": "6"
+    },
+    "ITEM": {
+        "value": "dadosVeiculo.item",
+        "required": true,
+        "type": "number",
+        "converter": "BigDecimalConverter",
+        "size": "9999999999999"
+    },
+    "MOTIVO": {
+        "value": "dadosVeiculo.motivo",
+        "required": true,
+        "type": "number",
+        "converter": "MotivoAjustamentoConverter",
+        "size": "3"
+    },
+    "FORMACALCULO": {
+        "value": "dadosVeiculo.formaCalculo",
+        "required": true,
+        "type": "number",
+        "converter": "IntegerConverter",
+        "size": "3"
+    },
+    "VIGÊNCIAINICIAL": {
+        "value": "dadosVeiculo.vigenciaInicial",
+        "required": true,
+        "type": "date",
+        "size": "10"
+    },
+    "VIGÊNCIAFINAL": {
+        "value": "dadosVeiculo.vigenciaFinal",
+        "required": true,
+        "type": "date",
+        "size": "10"
+    },
+    "PLACA": {
+        "value": "dadosVeiculo.placa",
+        "required": false,
+        "type": "string",
+        "size": "10"
+    },
+    "CHASSI": {
+        "value": "dadosVeiculo.chassi",
+        "required": false,
+        "type": "string",
+        "size": "50"
+    },
+    "COD.FIPE": {
+        "value": "dadosVeiculo.codigoFipe",
+        "required": false,
+        "type": "number",
+        "converter": "IntegerConverter",
+        "size": "999999999"
+    },
+    "MARCA": {
+        "value": "dadosVeiculo.marca",
+        "required": false,
+        "type": "string",
+        "size": "100"
+    },
+    "MODELO": {
+        "value": "dadosVeiculo.modelo",
+        "required": false,
+        "type": "string",
+        "size": "100"
+    },
+    "ANOFABRICAÇÃO": {
+        "value": "dadosVeiculo.anoFabricacao",
+        "required": false,
+        "type": "number",
+        "converter": "IntegerConverter",
+        "size": "9999"
+    },
+    "ANOMODELO": {
+        "value": "dadosVeiculo.anoModelo",
+        "required": false,
+        "type": "number",
+        "converter": "IntegerConverter",
+        "size": "9999"
+    },
+    "COMBUSTIVEL": {
+        "value": "dadosVeiculo.combustivel",
+        "required": false,
+        "type": "string",
+        "size": "1"
+    },
+    "0KM": {
+        "value": "dadosVeiculo.zeroKm",
+        "required": false,
+        "type": "string",
+        "size": "1"
+    },
+    "CLASSEBONUS": {
+        "value": "dadosVeiculo.classeBonus",
+        "required": false,
+        "type": "number",
+        "converter": "IntegerConverter",
+        "size": "10"
+    },
+    "CIDADE": {
+        "value": "dadosVeiculo.cidade",
+        "required": false,
+        "type": "string",
+        "size": "100"
+    },
+    "UF": {
+        "value": "dadosVeiculo.uf",
+        "required": false,
+        "type": "string",
+        "size": "2"
+    },
+    "VALORDEMERCADO": {
+        "value": "dadosVeiculo.valorMercado",
+        "required": false,
+        "type": "number",
+        "converter": "IntegerConverter",
+        "size": "9999999999"
+    },
+    "COBERTURA": {
+        "value": "casco.cobertura",
+        "required": true,
+        "type": "number",
+        "converter": "IntegerConverter",
+        "size": "3"
+    },
+    "FATORAJUSTEVMR": {
+        "value": "casco.fatorAjusteVmr",
+        "required": false,
+        "type": "number",
+        "size": "1.2"
+    },
+    "LMI-CASCO": {
+        "value": "casco.lmiCascoVd",
+        "required": false,
+        "type": "number",
+        "size": "9999999999999.99"
+    },
+    "LMI-ACESSÓRIOS": {
+        "value": "casco.lmiAcessorios",
+        "required": false,
+        "type": "number",
+        "size": "9999999999999.99"
+    },
+    "LMI-EQUIPAMENTOS": {
+        "value": "casco.lmiEquipamentos",
+        "required": false,
+        "type": "number",
+        "size": "9999999999999.99"
+    },
+    "LMI-CARROCERIA": {
+        "value": "casco.lmiCarroceria",
+        "required": false,
+        "type": "number",
+        "size": "9999999999999.99"
+    },
+    "TIPODECARROCERIA": {
+        "value": "casco.tipoCarroceria",
+        "required": false,
+        "type": "number",
+        "converter": "IntegerConverter",
+        "size": "22"
+    },
+    "LMI-BLINDAGEM": {
+        "value": "casco.lmiBlindagem",
+        "required": false,
+        "type": "number",
+        "size": "9999999999999.99"
+    },
+    "LMI-KITGÁS": {
+        "value": "casco.lmiKitGas",
+        "required": false,
+        "type": "number",
+        "size": "9999999999999.99"
+    },
+    "LMI-APARELHOSPORT.": {
+        "value": "casco.lmiAparelhosPort",
+        "required": false,
+        "type": "number",
+        "converter": "IntegerConverter",
+        "size": "9999999999999.99"
+    },
+    "24HORAS": {
+        "value": "casco.tipo24Horas",
+        "required": false,
+        "type": "number",
+        "converter": "IntegerConverter",
+        "size": "39"
+    },
+    "CARRORESERVA": {
+        "value": "casco.tipoCarroReserva",
+        "required": false,
+        "type": "number",
+        "converter": "IntegerConverter",
+        "size": "99"
+    },
+    "COBERTURAVIDROS": {
+        "value": "casco.coberturaVidros",
+        "required": false,
+        "type": "number",
+        "converter": "IntegerConverter",
+        "size": "4"
+    },
+    "DESPESAEXTRAORD.": {
+        "value": "casco.despesaExtraordinaria",
+        "required": false,
+        "type": "string",
+        "size": "1"
+    },
+    "EXTENSÃOZEROKM": {
+        "value": "casco.extensaoZeroKm",
+        "required": false,
+        "type": "number",
+        "converter": "IntegerConverter",
+        "size": "2"
+    },
+    "TUMULTOS": {
+        "value": "casco.tumultos",
+        "required": false,
+        "type": "string",
+        "size": "1"
+    },
+    "EXTENSÃODEPERIMETRO": {
+        "value": "casco.extensaoPerimetro",
+        "required": false,
+        "type": "string",
+        "size": "1"
+    },
+    "LMI-RCFV-DM": {
+        "value": "rcf.lmiRcfvDm",
+        "required": false,
+        "type": "number",
+        "size": "9999999999999.99"
+    },
+    "LMI-RCFV-DC": {
+        "value": "rcf.lmiRcfvDc",
+        "required": false,
+        "type": "number",
+        "size": "9999999999999.99"
+    },
+    "LMI-RCFV-GU": {
+        "value": "rcf.lmiRcfvGu",
+        "required": false,
+        "type": "number",
+        "size": "9999999999999.99"
+    },
+    "LMI-D.MORAIS": {
+        "value": "rcf.lmiDMorais",
+        "required": false,
+        "type": "number",
+        "size": "9999999999999.99"
+    },
+    "CLÁUS.112": {
+        "value": "rcf.clausula112",
+        "required": false,
+        "type": "string",
+        "size": "1"
+    },
+    "LMIRCTR-DM(PASSAGEIROS)": {
+        "value": "rcf.lmiRcfvDmOnibus",
+        "required": false,
+        "type": "number",
+        "size": "9999999999999.99"
+    },
+    "LMIRCTR-DC(PASSAGEIROS)": {
+        "value": "rcf.lmiRcfvDcOnibus",
+        "required": false,
+        "type": "number",
+        "size": "9999999999999.99"
+    },
+    "LMIRCTR-GU(PASSAGEIROS)": {
+        "value": "rcf.lmiRcfvGuOnibus",
+        "required": false,
+        "type": "number",
+        "size": "9999999999999.99"
+    },
+    "LMIRCTR-DANOSMORAIS(PASSAGEIROS)": {
+        "value": "rcf.lmiDMoraisOnibus",
+        "required": false,
+        "type": "number",
+        "size": "9999999999999.99"
+    },
+    "LMIRCTR-DM(TERCEIROS)": {
+        "value": "rcf.lmiRctrDmTerceiros",
+        "required": false,
+        "type": "number",
+        "size": "9999999999999.99"
+    },
+    "LMIRCTR-DC(TERCEIROS)": {
+        "value": "rcf.lmiRctrDcTerceiros",
+        "required": false,
+        "type": "number",
+        "size": "9999999999999.99"
+    },
+    "LMIRCTR-GU(TERCEIROS)": {
+        "value": "rcf.lmiRctrGuTerceiros",
+        "required": false,
+        "type": "number",
+        "size": "9999999999999.99"
+    },
+    "LMIRCTR-DANOSMORAIS(TERCEIROS)": {
+        "value": "rcf.lmiRctrDMoraisTerceiros",
+        "required": false,
+        "type": "number",
+        "size": "9999999999999.99"
+    },
+    "RCTRCLÁUS.112": {
+        "value": "rcf.clausula112Onibus",
+        "required": false,
+        "type": "string",
+        "size": "1"
+    },
+    "LMI-APPMORTE": {
+        "value": "app.lmiAppMorte",
+        "required": false,
+        "type": "number",
+        "size": "9999999999999.99"
+    },
+    "LMI-APPINV.": {
+        "value": "app.lmiAppInvalido",
+        "required": false,
+        "type": "number",
+        "size": "9999999999999.99"
+    },
+    "LMI-APPDMHO": {
+        "value": "app.lmiAppDmho",
+        "required": false,
+        "type": "number",
+        "size": "9999999999999.99"
+    },
+    "TIPOFRANQUIA": {
+        "value": "casco.tipoFranquia",
+        "required": false,
+        "type": "number",
+        "converter": "IntegerConverter",
+        "size": "7"
+    },
+    "VALORFRANQUIAINFORMADA": {
+        "value": "casco.valorFranquia",
+        "required": false,
+        "type": "number",
+        "size": "9999999999999.99"
+    },
+    "COEF.DESC./AGRAVOFRANQUIA": {
+        "value": "casco.coeficienteDescAgravoFranquia",
+        "required": false,
+        "type": "number",
+        "size": "99.99999"
+    },
+    "COMISSÃO": {
+        "value": "casco.comissao",
+        "required": false,
+        "type": "number",
+        "size": "9999999999999.99"
+    },
+    "PRÊMIOINFORMADOCASCO": {
+        "value": "casco.premioCasco",
+        "required": false,
+        "type": "number",
+        "size": "9999999999999.99"
+    },
+    "PRÊMIOINFORMADO-ACESSÓRIOS": {
+        "value": "casco.premioAcessorios",
+        "required": false,
+        "type": "number",
+        "size": "9999999999999.99"
+    },
+    "PRÊMIOINFORMADO-EQUIPAMENTO": {
+        "value": "casco.premioEquipamentos",
+        "required": false,
+        "type": "number",
+        "size": "9999999999999.99"
+        
+    },
+    "PRÊMIOINFORMADO-CARROCERIA": {
+        "value": "casco.premioCarroceria",
+        "required": false,
+        "type": "number",
+        "size": "9999999999999.99"
+    },
+    "PRÊMIOINFORMADO-BLINDAGEM": {
+        "value": "casco.premioBlindagem",
+        "required": false,
+        "type": "number",
+        "size": "9999999999999.99"
+    },
+    "PRÊMIOINFORMADO-KITGÁS": {
+        "value": "casco.premioKitGas",
+        "required": false,
+        "type": "number",
+        "size": "9999999999999.99"
+    },
+    "PRÊMIOINFORMADO-APARELHOSPORTATEIS": {
+        "value": "casco.premioAparelhosPort",
+        "required": false,
+        "type": "number",
+        "size": "9999999999999.99"
+    },
+    "PRÊMIOINFORMADOASSIST.24HORAS": {
+        "value": "casco.premio24Horas",
+        "required": false,
+        "type": "number",
+        "size": "9999999999999.99"
+    },
+    "PRÊMIOINFORMADOCARRORESERVA": {
+        "value": "casco.premioInformadoCarroReserva",
+        "required": false,
+        "type": "number",
+        "size": "9999999999999.99"
+    },
+    "PRÊMIOINFORMADOCOBERTURAVIDROS": {
+        "value": "casco.premioInformadoVidros",
+        "required": false,
+        "type": "number",
+        "size": "9999999999999.99"
+    },
+    "PRÊMIOINFORMADODESPESAEXTRAORD.": {
+        "value": "casco.premioInformadoDespExtraordinarias",
+        "required": false,
+        "type": "number",
+        "size": "9999999999999.99"
+    },
+    "PRÊMIOINFORMADOEXTENSÃOZEROKM": {
+        "value": "casco.premioInformadoExtensao0Km",
+        "required": false,
+        "type": "number",
+        "size": "9999999999999.99"
+    },
+    "PRÊMIOINFORMADOTUMULTOS": {
+        "value": "casco.premioInformadoTumultos",
+        "required": false,
+        "type": "number",
+        "size": "9999999999999.99"
+    },
+    "PRÊMIOINFORMADOEXTENSÃODEPERIMETRO": {
+        "value": "casco.premioInformadoExtensaoPerimetro",
+        "required": false,
+        "type": "number",
+        "size": "9999999999999.99"
+    },
+    "PRÊMIOINFORMADORCFV-DM": {
+        "value": "rcf.premioRcfvDm",
+        "required": false,
+        "type": "number",
+        "size": "9999999999999.99"
+    },
+    "PRÊMIOINFORMADORCFV-DC": {
+        "value": "rcf.premioRcfvDc",
+        "required": false,
+        "type": "number",
+        "size": "9999999999999.99"
+    },
+    "PRÊMIOINFORMADORCFV-GU": {
+        "value": "rcf.premioRcfvGu",
+        "required": false,
+        "type": "number",
+        "size": "9999999999999.99"
+    },
+    "PRÊMIOINFORMADOD.MORAIS": {
+        "value": "rcf.premioDMorais",
+        "required": false,
+        "type": "number",
+        "size": "9999999999999.99"
+    },
+    "PRÊMIOINFORMADOCLÁUS.112": {
+        "value": "rcf.premioInformadoClausula112",
+        "required": false,
+        "type": "number",
+        "size": "9999999999999.99"
+    },
+    "PRÊMIOINFORMADORCTR-DM(PASSAGEIROS)": {
+        "value": "rcf.premioRcfvDmOnibus",
+        "required": false,
+        "type": "number",
+        "size": "9999999999999.99"
+    },
+    "PRÊMIOINFORMADORCTR-DC(PASSAGEIROS)": {
+        "value": "rcf.premioRcfvDcOnibus",
+        "required": false,
+        "type": "number",
+        "size": "9999999999999.99"
+    },
+    "PRÊMIOINFORMADORCTR-GU(PASSAGEIROS)": {
+        "value": "rcf.premioRcfvGuOnibus",
+        "required": false,
+        "type": "number",
+        "size": "9999999999999.99"
+    },
+    "PRÊMIOINFORMADORCTR-DANOSMORAIS(PASSAGEIROS)": {
+        "value": "rcf.premioDMoraisOnibus",
+        "required": false,
+        "type": "number",
+        "size": "9999999999999.99"
+    },
+    "PRÊMIOINFORMADORCTR-DM(TERCEIROS)": {
+        "value": "rcf.premioInformadoRctrDmTerceiros",
+        "required": false,
+        "type": "number",
+        "size": "9999999999999.99"
+    },
+    "PRÊMIOINFORMADORCTR-DC(TERCEIROS)": {
+        "value": "rcf.premioInformadoRctrDcTerceiros",
+        "required": false,
+        "type": "number",
+        "size": "9999999999999.99"
+    },
+    "PRÊMIOINFORMADORCTR-GU(TERCEIROS)": {
+        "value": "rcf.premioInformadoRctrGuTerceiros",
+        "required": false,
+        "type": "number",
+        "size": "9999999999999.99"
+    },
+    "PRÊMIOINFORMADORCTR-DANOSMORAIS(TERCEIROS)": {
+        "value": "rcf.premioInformadoRctrDMoraisTerceiros",
+        "required": false,
+        "type": "number",
+        "size": "9999999999999.99"
+    },
+    "PRÊMIOINFORMADO-RCTRCLÁUS.112": {
+        "value": "rcf.premioClausula112Onibus",
+        "required": false,
+        "type": "number",
+        "size": "9999999999999.99"
+    },
+    "PRÊMIOINFORMADOAPPMORTE": {
+        "value": "app.premioAppMorte",
+        "required": false,
+        "type": "number",
+        "size": "9999999999999.99"
+    },
+    "PRÊMIOINFORMADOAPPINV.": {
+        "value": "app.premioAppInvalido",
+        "required": false,
+        "type": "number",
+        "size": "9999999999999.99"
+    },
+    "PRÊMIOINFORMADOAPPDMHO": {
+        "value": "app.premioAppDmho",
+        "required": false,
+        "type": "number",
+        "size": "9999999999999.99"
+    },
+    "COEF.DESC/AGRAVOCASCO": {
+        "value": "casco.coeficienteCasco",
+        "required": false,
+        "type": "number",
+        "size": "99.99999"
+    },
+    "COEF.DESC/AGRAVOACESSÓRIOS": {
+        "value": "casco.coeficienteAcessorios",
+        "required": false,
+        "type": "number",
+        "size": "99.99999"
+    },
+    "COEF.DESC/AGRAVOEQUIPAMENTOS": {
+        "value": "casco.coeficienteEquipamentos",
+        "required": false,
+        "type": "number",
+        "size": "99.99999"
+    },
+    "COEF.DESC/AGRAVOCARROCERIA": {
+        "value": "casco.coeficienteCarroceria",
+        "required": false,
+        "type": "number",
+        "size": "99.99999"
+    },
+    "COEF.DESC/AGRAVOBLINDAGEM": {
+        "value": "casco.coeficienteBlindagem",
+        "required": false,
+        "type": "number",
+        "size": "99.99999"
+    },
+    "COEF.DESC/AGRAVOKITGÁS": {
+        "value": "casco.coeficienteKitGas",
+        "required": false,
+        "type": "number",
+        "size": "99.99999"
+    },
+    "COEF.DESC/AGRAVOAPARELHOSPORT.": {
+        "value": "casco.coeficienteAparelhosPort",
+        "required": false,
+        "type": "number",
+        "size": "99.99999"
+    },
+    "COEF.DESC/AGRAVOASSIST.24HORAS": {
+        "value": "casco.coeficienteDescAgravoAssist24Horas",
+        "required": false,
+        "type": "number",
+        "size": "99.99999"
+    },
+    "COEF.DESC/AGRAVOCARRORESERVA": {
+        "value": "casco.coeficienteDescAgravoCarroReserva",
+        "required": false,
+        "type": "number",
+        "size": "99.99999"
+    },
+    "COEF.DESC/AGRAVOVIDROS": {
+        "value": "casco.coeficienteDescAgravoVidros",
+        "required": false,
+        "type": "number",
+        "size": "99.99999"
+    },
+    "COEF.DESC/AGRAVODESP.EXTRAORDINÁRIAS": {
+        "value": "casco.coeficienteDescAgravoDespExtraordinarias",
+        "required": false,
+        "type": "number",
+        "size": "99.99999"
+    },
+    "COEF.DESC/AGRAVOEXTENSÃO0KM": {
+        "value": "casco.coeficienteDescAgravoExtensao0Km",
+        "required": false,
+        "type": "number",
+        "size": "99.99999"
+    },
+    "COEF.DESC/AGRAVOTUMULTOS": {
+        "value": "casco.coeficienteDescAgravoTumultos",
+        "required": false,
+        "type": "number",
+        "size": "99.99999"
+    },
+    "COEF.DESC/AGRAVOEXTENSÃOPERÍMETRO": {
+        "value": "casco.coeficienteDescAgravoExtensaoPerimetro",
+        "required": false,
+        "type": "number",
+        "size": "99.99999"
+    },
+    "COEF.DESC/AGRAVORCFV-DM": {
+        "value": "rcf.coeficienteRcfvDm",
+        "required": false,
+        "type": "number",
+        "size": "99.99999"
+    },
+    "COEF.DESC/AGRAVORCFV-DC": {
+        "value": "rcf.coeficienteDescAgravoRcfvDc",
+        "required": false,
+        "type": "number",
+        "size": "99.99999"
+    },
+    "COEF.DESC/AGRAVORCFV-GU": {
+        "value": "rcf.coeficienteDescAgravoRcfvGu",
+        "required": false,
+        "type": "number",
+        "size": "99.99999"
+    },
+    "COEF.DESC/AGRAVORCFV-D.MORAIS": {
+        "value": "rcf.coeficienteDescAgravoRcfvDMorais",
+        "required": false,
+        "type": "number",
+        "size": "99.99999"
+    },
+    "COEF.DESC/AGRAVOCLÁUSULA112": {
+        "value": "rcf.coeficienteDescAgravoClausula112",
+        "required": false,
+        "type": "number",
+        "size": "99.99999"
+    },
+    "COEF.DESC/AGRAVORCTR-DM(PASSAGEIROS)": {
+        "value": "rcf.coeficienteRcfvDmOnibus",
+        "required": false,
+        "type": "number",
+        "size": "99.99999"
+    },
+    "COEF.DESC/AGRAVORCTR-DC(PASSAGEIROS)": {
+        "value": "rcf.coeficienteRcfvDcOnibus",
+        "required": false,
+        "type": "number",
+        "size": "99.99999"
+    },
+    "COEF.DESC/AGRAVORCTR-GU(PASSAGEIROS)": {
+        "value": "rcf.coeficienteRcfvGuOnibus",
+        "required": false,
+        "type": "number",
+        "size": "99.99999"
+    },
+    "COEF.DESC/AGRAVORCTR-D.MORAIS(PASSAGEIROS)": {
+        "value": "rcf.coeficienteDMoraisOnibus",
+        "required": false,
+        "type": "number",
+        "size": "99.99999"
+    },
+    "COEF.DESC/AGRAVORCTR-DM(TERCEIROS)": {
+        "value": "rcf.coeficienteDescAgravoRctrDmTerceiros",
+        "required": false,
+        "type": "number",
+        "size": "99.99999"
+    },
+    "COEF.DESC/AGRAVORCTR-DC(TERCEIROS)": {
+        "value": "rcf.coeficienteDescAgravoRctrDcTerceiros",
+        "required": false,
+        "type": "number",
+        "size": "99.99999"
+    },
+    "COEF.DESC/AGRAVORCTR-GU(TERCEIROS)": {
+        "value": "rcf.coeficienteDescAgravoRctrGuTerceiros",
+        "required": false,
+        "type": "number",
+        "size": "99.99999"
+    },
+    "COEF.DESC/AGRAVORCTR-D.MORAIS(TERCEIROS)": {
+        "value": "rcf.coeficienteDescAgravoRctrDMoraisTerceiros",
+        "required": false,
+        "type": "number",
+        "size": "99.99999"
+    },
+    "COEF.RCTR-CLÁUSULA112": {
+        "value": "rcf.coeficienteClausula112Onibus",
+        "required": false,
+        "type": "number",
+        "size": "99.99999"
+    },
+    "COEF.DESC/AGRAVOAPPMORTE": {
+        "value": "app.coeficienteDescAgravoAppMorte",
+        "required": false,
+        "type": "number",
+        "size": "99.99999"
+    },
+    "COEF.DESC/AGRAVOAPPINVALIDEZ": {
+        "value": "app.coeficienteDescAgravoAppInvalidez",
+        "required": false,
+        "type": "number",
+        "size": "99.99999"
+    },
+    "COEF.DESC/AGRAVOAPPDMHO": {
+        "value": "app.coeficienteDescAgravoAppDmho",
+        "required": false,
+        "type": "number",
+        "size": "99.99999"
+    }
+}

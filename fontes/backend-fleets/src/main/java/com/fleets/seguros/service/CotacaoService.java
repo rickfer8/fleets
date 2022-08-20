@@ -4,16 +4,19 @@ import java.util.List;
 
 import javax.transaction.Transactional;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import com.fleets.seguros.constante.Constante;
+import com.fleets.seguros.dto.UploadProcessorDTO;
 import com.fleets.seguros.exception.CadastroRegistroException;
 import com.fleets.seguros.exception.ExcluiRegistroException;
 import com.fleets.seguros.exception.NaoEncontradoException;
 import com.fleets.seguros.model.Cotacao;
 import com.fleets.seguros.repository.CotacaoRepository;
 import com.fleets.seguros.repository.CotacaoRepositoryImpl;
+import com.fleets.seguros.service.mapeamento.RegistroCotacaoMapeamentoService;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
@@ -25,6 +28,8 @@ public class CotacaoService {
 
 	private final CotacaoRepository repository;
 	private final CotacaoRepositoryImpl repositoryImpl;
+	@Autowired
+	private RegistroCotacaoMapeamentoService mapeamentoColunasService;
 
 	public List<Cotacao> findAll() {
 		return repository.findAll(Sort.by(Sort.Direction.DESC, "id"));
@@ -58,6 +63,16 @@ public class CotacaoService {
 			log.error("erro ao excluir cotacao {}", id, e);
 			throw new ExcluiRegistroException(Constante.ERRO_EXCLUI_REGISTROS + id);
 		}
+	}
+
+	/**
+	 * Criar entidade.
+	 *
+	 * @return {@link Cotacao}
+	 */
+	public Cotacao criarEntidade(UploadProcessorDTO linhaDTO) {
+		final Cotacao cotacao = mapeamentoColunasService.getRegistroCotacao(linhaDTO);		
+		return cotacao;
 	}
 
 }

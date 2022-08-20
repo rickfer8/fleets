@@ -15,5 +15,28 @@ public class Constante {
 	public static final String JWT_PROVIDER = "Bearer";
 	public static final String JWT_ROLE_KEY = "role";
 	public static final String JWT_MSG_INVALIDO = "Token Inválido";
+	
+	/** PASTA_TEMPORARIA_ARQUIVO. */
+	public static final String PASTA_TEMPORARIA_ARQUIVO = "fleets-seguros";	
+	
+	/** MENSAGENS PADRÃO */
+	public static final String LOG_UPLOAD_COLUNA_AND_LINHA = "Coluna: %s, Linha(%d): %s";
+	
+	public static final String ERRO_NOT_FOUND = "não mapeada para a apolice. Verifique a planilha importada e faça as correções necessárias.";
+	
+	public static final String ITEM_MAPEAMENTO_VAZIO = "Existe uma coluna com cabeçalho vazio. "
+			+ "Verifique a planilha importada e faça as correções necessárias.";	
+	
+	public static final String LOG_UPLOAD_DADO_TIPO_INVALIDO = "Tipo informado diverge do tipo esperado na tabela de configuração do banco de dados.";
+	public static final String LOG_UPLOAD_DADO_TAMANHO = "Tamanho do campo excede o limite esperado na tabela de configuração do banco de dados.";
+	
+	/** NOMES DE COLUNA DA IMPORTAÇÃO DE PLANILHA */
+    public static final String COLUNA_CIDADE = "CIDADE";
+    public static final String COLUNA_COMBUSTIVEL = "COMBUSTIVEL";
+    public static final String COLUNA_VIGENCIA_FINAL = "VIGÊNCIA FINAL";
+    public static final String COLUNA_PLACA = "PLACA";
+    public static final String COLUNA_TIPO_ENDOSSO = "TIPO ENDOSSO";
+    public static final String COLUNA_MOTIVO = "MOTIVO";
+    public static final String COLUNA_ITEM = "ITEM";
 
 }

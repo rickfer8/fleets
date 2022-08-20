@@ -1,4 +1,4 @@
-package com.fleets.seguros.enuns;
+package com.fleets.seguros.enums;
 
 public enum PerfilEnum {
 
