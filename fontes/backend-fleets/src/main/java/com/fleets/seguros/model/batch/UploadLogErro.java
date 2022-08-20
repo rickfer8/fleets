@@ -8,9 +8,7 @@ import java.math.BigDecimal;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
 import com.fleets.seguros.constante.Constante;
@@ -34,11 +32,9 @@ import lombok.Setter;
 public class UploadLogErro implements Serializable {
 	
 	private static final long serialVersionUID = 1L;
-
-    @Id
-    @Column(name = "id")
-    @GeneratedValue(strategy= GenerationType.SEQUENCE, generator = "GEN_UPLOAD_LOG_ERROS_ID")
-    @SequenceGenerator(name="GEN_UPLOAD_LOG_ERROS_ID", sequenceName="sysaut.SQ_UPLOAD_LOG_ERROS", allocationSize=1)
+    
+	@Id
+	@GeneratedValue(generator = "seq_upload_log_erro")
     private Long id;
 
     @Column(name = "job_execution_id")

@@ -3,20 +3,16 @@ package com.fleets.seguros.model.batch;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.SequenceGenerator;
 
 /**
  * JobExecutionData.
  */
-@Entity(name = "TB_SB_JOB_EXECUTION_DATA")
+@Entity(name = "batch_job_excution_data")
 public class JobExecutionData {
 
 	@Id
-	@Column(name = "JOB_DATA_ID")
-	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "GEN_EXEC_DATA")
-	@SequenceGenerator(name = "GEN_EXEC_DATA", sequenceName = "SQ_SB_JOB_EXEC_DATA", allocationSize = 1)
+	@GeneratedValue(generator = "seq_batch_job_excution_data")
 	private Long id;
 	
 	@Column(name = "JOB_EXECUTION_ID")

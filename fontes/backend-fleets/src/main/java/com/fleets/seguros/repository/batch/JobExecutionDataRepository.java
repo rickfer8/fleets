@@ -29,7 +29,7 @@ public interface JobExecutionDataRepository extends JpaRepository<JobExecutionDa
 	@Query(value = JobExecutionSQL.CONTAR_JOBS_EM_EXECUCAO_POR_USUARIO, nativeQuery = true)
 	BigDecimal countJobsEmExecucaoParaDeterminadoUsuario(@Param("idUsuario") Long idUsuario, @Param("statusEmExecucao") List<String> statusEmExecucao);
 	
-	@Query(value = "SELECT COUNT(job.JOB_EXECUTION_ID) FROM TB_SB_JOB_EXECUTION job WHERE job.status IN (:statusEmExecucao)", nativeQuery = true)
+	@Query(value = "SELECT COUNT(job.JOB_EXECUTION_ID) FROM batch_job_execution job WHERE job.status IN (:statusEmExecucao)", nativeQuery = true)
 	BigDecimal countJobsEmExecucao(@Param("statusEmExecucao") List<String> statusEmExecucao);
 
 }

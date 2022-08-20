@@ -15,11 +15,11 @@ public final class JobExecutionSQL {
 		throw new IllegalStateException("Classe utilitária");
 	}
 
-	private static final String COUNT_JOB_EXECUTION_ID_FROM_JOB_EXECUTION = "SELECT COUNT(job.JOB_EXECUTION_ID) FROM TB_SB_JOB_EXECUTION job ";
+	private static final String COUNT_JOB_EXECUTION_ID_FROM_JOB_EXECUTION = "SELECT COUNT(job.JOB_EXECUTION_ID) FROM batch_job_execution job ";
 	
 	public static final String CONTAR_JOBS_EM_EXECUCAO_POR_USUARIO = 
 			COUNT_JOB_EXECUTION_ID_FROM_JOB_EXECUTION + 
-				" INNER JOIN TB_SB_JOB_EXECUTION_PARAMS params ON params.JOB_EXECUTION_ID = job.JOB_EXECUTION_ID " + 
+				" INNER JOIN batch_job_execution_PARAMS params ON params.JOB_EXECUTION_ID = job.JOB_EXECUTION_ID " + 
 				" WHERE job.status IN (:statusEmExecucao) " + 
 				" AND (params.KEY_NAME = 'usuario' AND params.long_val = :idUsuario)";
 	
