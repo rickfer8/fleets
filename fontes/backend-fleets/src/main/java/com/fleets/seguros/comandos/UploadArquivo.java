@@ -2,14 +2,14 @@ package com.fleets.seguros.comandos;
 
 import org.springframework.web.multipart.MultipartFile;
 
-import com.fleets.seguros.dto.UsuarioDTO;
+import com.fleets.seguros.dto.CorretorDTO;
 
 
 public class UploadArquivo {
 	
 	private final MultipartFile file;
 	
-	private final UsuarioDTO usuarioDTO;
+	private final CorretorDTO corretorDTO;
 	
 	/**
 	 * Instancia um novo upload arquivo.
@@ -17,9 +17,9 @@ public class UploadArquivo {
 	 * @param usuarioDto usuario
 	 * @param file the file
 	 */
-	public UploadArquivo(UsuarioDTO usuarioDTO, MultipartFile file) {		
+	public UploadArquivo(CorretorDTO corretorDTO, MultipartFile file) {		
 		this.file = file;		
-		this.usuarioDTO = usuarioDTO;
+		this.corretorDTO = corretorDTO;
 	}
 	
 	/**
@@ -36,8 +36,8 @@ public class UploadArquivo {
 	 *
 	 * @return UsuarioDTO
 	 */
-	public UsuarioDTO getUsuarioDTO() {
-		return usuarioDTO;
+	public CorretorDTO getCorretorDTO() {
+		return corretorDTO;
 	}
 
 }

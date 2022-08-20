@@ -43,16 +43,16 @@ public class ProcessUploadHandler extends ProcessHandler<ProcessUploadParameter>
 	 */
 	@Override
 	public JobExecution executeSpecific(ProcessUploadParameter parametros) throws JobExecutionException {
-		final Arquivo arquivo = arquivoService.registrarArquivo(parametros.getMultipart(), parametros.getUsuarioDTO());
+		final Arquivo arquivo = arquivoService.registrarArquivo(parametros.getMultipart(), parametros.getCorretorDTO());
 
 		final String descricao = parametros.getMultipart().getOriginalFilename();
 		
-		final Apolice apolice = apoliceService.criarApolice(parametros.getUsuarioDTO(), arquivo);
+		final Apolice apolice = apoliceService.criarApolice(parametros.getCorretorDTO(), arquivo);
 
 		try {
 			return asyncLauncher.run(registry.getJob(getProcessDefinition().name()),
 					new JobParametersBuilder().addString(JobExecutionParametrosConstantes.INSTANCE_ID_PARAM_NAME, gerarUuid(), true)							
-							.addLong(JobExecutionParametrosConstantes.USUARIO_PARAM_NAME, parametros.getUsuarioDTO().getId())
+							.addLong(JobExecutionParametrosConstantes.USUARIO_PARAM_NAME, parametros.getCorretorDTO().getId())
 							.addLong(JobExecutionParametrosConstantes.APOLICE_ID_PARAM_NAME, apolice.getId())
 							.addString(JobExecutionParametrosConstantes.DESCRICAO_APOLICE_PARAM, descricao)
 							.addLong(JobExecutionParametrosConstantes.ARQUIVO_ID_PARAM_NAME, arquivo.getId()).toJobParameters());

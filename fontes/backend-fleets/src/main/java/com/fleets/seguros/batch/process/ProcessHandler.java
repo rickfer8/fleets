@@ -63,8 +63,8 @@ public abstract class ProcessHandler<T extends ProcessUploadParameter> {
 	 * @throws JobExecutionException the job execution exception
 	 */
 	public JobExecution execute(T parametros) throws JobExecutionException {
-		if (jobExecutionService.existeJobEmExecucaoParaDeterminadoUsuario(parametros.getUsuarioDTO().getId())) {
-			throw new UsuarioAlreadyScheduledException(parametros.getUsuarioDTO().getId());
+		if (jobExecutionService.existeJobEmExecucaoParaDeterminadoUsuario(parametros.getCorretorDTO().getId())) {
+			throw new UsuarioAlreadyScheduledException(parametros.getCorretorDTO().getId());
 		}
 		
 		return executeSpecific(parametros);

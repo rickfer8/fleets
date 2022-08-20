@@ -52,7 +52,7 @@ public class UploadArquivoHandler {
 				throw new ExtensaoNaoSuportadaException(exceptionMessages.getExtensaoNaoSuportadaException(extensao), extensao);
 			}
 
-			return processHandler.execute(new ProcessUploadParameter(comando.getUsuarioDTO(), multipart)).getJobInstance().getInstanceId();
+			return processHandler.execute(new ProcessUploadParameter(comando.getCorretorDTO(), multipart)).getJobInstance().getInstanceId();
 
 		} catch (RuntimeException ex) {
 			log.error("[UploadArquivoHandler.handle]", ex);

@@ -2,7 +2,7 @@ package com.fleets.seguros.batch.process;
 
 import org.springframework.web.multipart.MultipartFile;
 
-import com.fleets.seguros.dto.UsuarioDTO;
+import com.fleets.seguros.dto.CorretorDTO;
 
 /**
  * ProcessUploadParameter.
@@ -10,7 +10,7 @@ import com.fleets.seguros.dto.UsuarioDTO;
 public class ProcessUploadParameter {
 	
 	private final MultipartFile multipart;
-	private final UsuarioDTO usuarioDTO;
+	private final CorretorDTO corretorDTO;
 	
 	/**
 	 * Instancia um novo process upload parameter.
@@ -18,9 +18,9 @@ public class ProcessUploadParameter {
 	 * @param usuarioDTO 
 	 * @param multipart the multipart
 	 */
-	public ProcessUploadParameter(UsuarioDTO usuarioDTO, MultipartFile multipart) {	
+	public ProcessUploadParameter(CorretorDTO corretorDTO, MultipartFile multipart) {	
 		this.multipart = multipart;
-		this.usuarioDTO = usuarioDTO;
+		this.corretorDTO = corretorDTO;
 	}
 
 	/**
@@ -32,8 +32,8 @@ public class ProcessUploadParameter {
 		return multipart;
 	}
 
-	public UsuarioDTO getUsuarioDTO() {
-		return usuarioDTO;
+	public CorretorDTO getCorretorDTO() {
+		return corretorDTO;
 	}
 
 }
