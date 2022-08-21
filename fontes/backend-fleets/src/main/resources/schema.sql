@@ -24,7 +24,6 @@ CREATE TABLE IF NOT EXISTS usuario
   id integer NOT NULL,
   nome character varying(60),
   cpf character varying(14),
-  data_nascimento date,
   email character varying(60),
   senha character varying(64),
   ativo boolean,

@@ -15,9 +15,8 @@ public class JwtUserFactory {
 	}
 
 	public static JwtUser create(Usuario usuario) {
-		JwtUser jwtUser = new JwtUser(usuario.getId().toString(), usuario.getEmail(), usuario.getSenha(),
+		return new JwtUser(usuario.getId().toString(), usuario.getEmail(), usuario.getSenha(),
 				mapToGrantedAuthority(usuario.getPerfil()));
-		return jwtUser;
 	}
 
 	private static List<GrantedAuthority> mapToGrantedAuthority(Perfil perfil) {
