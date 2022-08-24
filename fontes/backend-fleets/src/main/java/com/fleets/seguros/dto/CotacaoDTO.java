@@ -2,6 +2,8 @@ package com.fleets.seguros.dto;
 
 import java.util.Date;
 
+import com.fleets.seguros.enums.SimNaoEnum;
+
 import lombok.Getter;
 import lombok.Setter;
 
@@ -14,34 +16,34 @@ public class CotacaoDTO {
 	private Date vigenciaFinal;
 	private String placa;
 	private String chassi;
-	private String codigoFipe;
+	private Integer codigoFipe;
 	private String marca;
 	private String modelo;
-	private Date anoFabricacao;
-	private Date anoModelo;
+	private Integer anoFabricacao;
+	private Integer anoModelo;
 	private String combustivel;
-	private Boolean novo;
-	private String classeBonus;
+	private SimNaoEnum zeroKm;
+	private Integer classeBonus;
 	private String cidade;
 	private String uf;
-	private Integer cobertura;
-	private String lmiCasco;
-	private String lmiAcessorios;
-	private String lmiEquipamentos;
-	private String lmiBlindagem;
-	private String lmiKitGas;
-	private String lmiAparelhosPort;
+	private Double cobertura;
+	private Double lmiCasco;
+	private Double lmiAcessorios;
+	private Double lmiEquipamentos;
+	private Double lmiBlindagem;
+	private Double lmiKitGas;
+	private Double lmiAparelhosPort;
 	private Integer vinteQuatroHoras;
 	private Integer carroReserva;
 	private Integer coberturaVidros;
-	private Integer extensaoNovo;
+	private Integer extensaoZeroKm;
 	private Double lmiDanosMorais;
 	private Double lmiRctrDanosMoraisTerceiros;
-	private Integer rctrClaus;
+	private String rctrClaus;
 	private Double lmiAppMorte;
 	private Integer tipoFranquia;
 	private Double valorFranquiaInformada;
-	private Integer comissao;
+	private Double comissao;
 	private Double premioInformadoDanosMoraisTerceiros;
 
 }

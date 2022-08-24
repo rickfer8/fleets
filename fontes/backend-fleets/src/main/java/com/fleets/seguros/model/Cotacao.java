@@ -6,18 +6,27 @@ import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.OneToOne;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import com.fleets.seguros.enums.SimNaoEnum;
+
+import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Getter
 @Setter
 @Entity
+@AllArgsConstructor
+@NoArgsConstructor
 @Table(name = "cotacao")
 public class Cotacao implements Serializable {
 
@@ -41,7 +50,7 @@ public class Cotacao implements Serializable {
 	private String chassi;
 
 	@Column(name = "codigo_fipe")
-	private String codigoFipe;
+	private Integer codigoFipe;
 
 	@Column(name = "marca")
 	private String marca;
@@ -50,19 +59,20 @@ public class Cotacao implements Serializable {
 	private String modelo;
 
 	@Column(name = "ano_fabricacao")
-	private Date anoFabricacao;
+	private Integer anoFabricacao;
 
 	@Column(name = "ano_modelo")
-	private Date anoModelo;
+	private Integer anoModelo;
 
 	@Column(name = "combustivel")
 	private String combustivel;
 
-	@Column(name = "novo")
-	private Boolean novo;
+	@Column(name = "zeroKm")
+	@Enumerated(EnumType.STRING)
+	private SimNaoEnum zeroKm;
 
 	@Column(name = "classe_bonus")
-	private String classeBonus;
+	private Integer classeBonus;
 
 	@Column(name = "cidade")
 	private String cidade;
@@ -71,25 +81,25 @@ public class Cotacao implements Serializable {
 	private String uf;
 
 	@Column(name = "cobertura")
-	private Integer cobertura;
+	private Double cobertura;
 
 	@Column(name = "lmi_casco")
-	private String lmiCasco;
+	private Double lmiCasco;
 
 	@Column(name = "lmi_acessorios")
-	private String lmiAcessorios;
+	private Double lmiAcessorios;
 
 	@Column(name = "lmi_equipamentos")
-	private String lmiEquipamentos;
+	private Double lmiEquipamentos;
 
 	@Column(name = "lmi_blindagem")
-	private String lmiBlindagem;
+	private Double lmiBlindagem;
 
 	@Column(name = "lmi_kit_gas")
-	private String lmiKitGas;
+	private Double lmiKitGas;
 
 	@Column(name = "lmi_aparelhos_port")
-	private String lmiAparelhosPort;
+	private Double lmiAparelhosPort;
 
 	@Column(name = "vinte_quatro_horas")
 	private Integer vinteQuatroHoras;
@@ -100,8 +110,8 @@ public class Cotacao implements Serializable {
 	@Column(name = "cobertura_vidros")
 	private Integer coberturaVidros;
 
-	@Column(name = "extensao_novo")
-	private Integer extensaoNovo;
+	@Column(name = "extensao_zero_Km")
+	private Integer extensaoZeroKm;
 
 	@Column(name = "lmi_danos_morais")
 	private Double lmiDanosMorais;
@@ -110,7 +120,7 @@ public class Cotacao implements Serializable {
 	private Double lmiRctrDanosMoraisTerceiros;
 
 	@Column(name = "rctr_claus_112")
-	private Integer rctrClaus;
+	private String rctrClaus;
 
 	@Column(name = "lmi_app_morte")
 	private Double lmiAppMorte;
@@ -122,13 +132,13 @@ public class Cotacao implements Serializable {
 	private Double valorFranquiaInformada;
 
 	@Column(name = "comissao")
-	private Integer comissao;
+	private Double comissao;
 
 	@Column(name = "premio_informado_rctr_danos_morais_terceiros")
 	private Double premioInformadoDanosMoraisTerceiros;
 	
-	@OneToOne
-	@JoinColumn(name = "id_apolice")
-	private Apolice apolice;
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name="id_apolice", nullable=false)
+	private Apolice apolice;	
 
 }

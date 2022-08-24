@@ -21,7 +21,7 @@ public class CotacaoConverter {
 		cotacao.setAnoFabricacao(dto.getAnoFabricacao());
 		cotacao.setAnoModelo(dto.getAnoModelo());
 		cotacao.setCombustivel(dto.getCombustivel());
-		cotacao.setNovo(dto.getNovo());
+		cotacao.setZeroKm(dto.getZeroKm());
 		cotacao.setClasseBonus(dto.getClasseBonus());
 		cotacao.setCidade(dto.getCidade());
 		cotacao.setUf(dto.getUf());
@@ -35,7 +35,7 @@ public class CotacaoConverter {
 		cotacao.setVinteQuatroHoras(dto.getVinteQuatroHoras());
 		cotacao.setCarroReserva(dto.getCarroReserva());
 		cotacao.setCoberturaVidros(dto.getCoberturaVidros());
-		cotacao.setExtensaoNovo(dto.getExtensaoNovo());
+		cotacao.setExtensaoZeroKm(dto.getExtensaoZeroKm());
 		cotacao.setLmiDanosMorais(dto.getLmiDanosMorais());
 		cotacao.setLmiRctrDanosMoraisTerceiros(dto.getLmiRctrDanosMoraisTerceiros());
 		cotacao.setRctrClaus(dto.getRctrClaus());
@@ -60,7 +60,7 @@ public class CotacaoConverter {
 		dto.setAnoFabricacao(cotacao.getAnoFabricacao());
 		dto.setAnoModelo(cotacao.getAnoModelo());
 		dto.setCombustivel(cotacao.getCombustivel());
-		dto.setNovo(cotacao.getNovo());
+		dto.setZeroKm(cotacao.getZeroKm());
 		dto.setClasseBonus(cotacao.getClasseBonus());
 		dto.setCidade(cotacao.getCidade());
 		dto.setUf(cotacao.getUf());
@@ -74,7 +74,7 @@ public class CotacaoConverter {
 		dto.setVinteQuatroHoras(cotacao.getVinteQuatroHoras());
 		dto.setCarroReserva(cotacao.getCarroReserva());
 		dto.setCoberturaVidros(cotacao.getCoberturaVidros());
-		dto.setExtensaoNovo(cotacao.getExtensaoNovo());
+		dto.setExtensaoZeroKm(cotacao.getExtensaoZeroKm());
 		dto.setLmiDanosMorais(cotacao.getLmiDanosMorais());
 		dto.setLmiRctrDanosMoraisTerceiros(cotacao.getLmiRctrDanosMoraisTerceiros());
 		dto.setRctrClaus(cotacao.getRctrClaus());
