@@ -22,24 +22,24 @@ import lombok.Setter;
 @Setter
 @Entity
 @Builder
-@Table(name = "arquivo")
+@Table(name = "apolice")
 public class Apolice {
-	
+
 	@Id
 	@GeneratedValue(generator = "seq_apolice")
 	@Column(name = "id")
 	private Long id;
-	
+
 	@Column(name = "descricao")
 	private String descricao;
-	
+
 	@Column(name = "data_criacao")
 	private Date dataCriacao;
-	
+
 	@OneToOne
 	@JoinColumn(name = "id_usuario")
 	private Usuario usuario;
-	
+
 	@OneToOne
 	@JoinColumn(name = "id_arquivo")
 	private Arquivo arquivo;

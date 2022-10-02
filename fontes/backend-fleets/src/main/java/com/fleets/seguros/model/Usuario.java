@@ -47,4 +47,9 @@ public class Usuario {
 	@JoinColumn(name = "id_perfil")
 	private Perfil perfil;
 
+	public Usuario(Long id) {
+		super();
+		this.id = id;
+	}
+
 }
