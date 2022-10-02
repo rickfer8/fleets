@@ -30,9 +30,10 @@ public class ApoliceService {
 	public Apolice criarApolice(CorretorDTO corretorDto, Arquivo arquivo) {
 		
 		Apolice apolice = Apolice.builder()
-				.descricao(arquivo.getNomeArquivo()).arquivo(arquivo)
+				.descricao(arquivo.getNomeArquivo())
+				.arquivo(arquivo)
 				.dataCriacao(Calendar.getInstance().getTime())
-				.usuario(Usuario.builder().id(corretorDto.getId()).nome(corretorDto.getNome()).build())
+				.usuario(Usuario.builder().id(corretorDto.getId()).nome(corretorDto.getNome()).build())				
 				.status(AtivoInativoEnum.A).build();
 
 		return apoliceRepository.save(apolice);

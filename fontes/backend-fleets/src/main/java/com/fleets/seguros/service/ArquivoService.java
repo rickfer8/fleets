@@ -13,7 +13,6 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.fleets.seguros.component.UploadMessagesConfiguration;
 import com.fleets.seguros.dto.CorretorDTO;
-import com.fleets.seguros.dto.UsuarioDTO;
 import com.fleets.seguros.exception.batch.FalhaSalvarArquivoTemporarioException;
 import com.fleets.seguros.model.Arquivo;
 import com.fleets.seguros.model.Usuario;
@@ -52,6 +51,7 @@ public class ArquivoService {
 			arquivo.setDataCriacao(Calendar.getInstance().getTime());
 			arquivo.setFile(file.getInputStream());			
 			arquivo.setNomeUsuario(corretor.getNome());
+			arquivo.setUsuario(Usuario.builder().id(corretor.getId()).nome(corretor.getNome()).build());
 			arquivo.setPath(arquivoTemporarioService.create(arquivo));
 
 			return repository.save(arquivo);
@@ -84,8 +84,7 @@ public class ArquivoService {
 		final Optional<Arquivo> arquivoOptional = repository.findById(arquivoId);
 
 		if (arquivoOptional.isPresent()) {
-			arquivoTemporarioService.delete(arquivoOptional.get());
-			repository.delete(arquivoOptional.get());
+			arquivoTemporarioService.delete(arquivoOptional.get());			
 			return true;
 		}
 		return false;

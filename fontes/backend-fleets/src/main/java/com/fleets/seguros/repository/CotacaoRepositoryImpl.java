@@ -51,7 +51,7 @@ public class CotacaoRepositoryImpl {
 			cotacao.setId(tupla.get("id", Integer.class).longValue());
 			cotacao.setPlaca(tupla.get("placa", String.class));
 			cotacao.setChassi(tupla.get("chassi", String.class));
-			cotacao.setCodigoFipe(tupla.get("codigo_fipe", String.class));
+			cotacao.setCodigoFipe(tupla.get("codigo_fipe", Integer.class));
 			cotacao.setMarca(tupla.get("marca", String.class));
 			cotacao.setModelo(tupla.get("modelo", String.class));
 			cotacao.setCidade(tupla.get("cidade", String.class));

@@ -14,12 +14,16 @@ import javax.persistence.Transient;
 
 import com.fleets.seguros.temporario.ArquivoTemporario;
 
+import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Getter
 @Setter
 @Entity
+@AllArgsConstructor
+@NoArgsConstructor
 @Table(name = "arquivo")
 public class Arquivo implements ArquivoTemporario {
 	
