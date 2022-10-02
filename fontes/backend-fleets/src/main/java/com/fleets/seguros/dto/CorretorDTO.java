@@ -10,9 +10,10 @@ public class CorretorDTO {
 	private Long id;
 	private String nome;
 
-	public CorretorDTO(Long id) {
+	public CorretorDTO(Long id, String nome) {
 		super();
 		this.id = id;
+		this.nome = nome;
 	}
 
 }

@@ -1,7 +1,6 @@
 package com.fleets.seguros.controller;
 
 import org.springframework.batch.core.JobExecutionException;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -13,8 +12,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
-import com.fleets.seguros.comandos.UploadArquivo;
-import com.fleets.seguros.dto.CorretorDTO;
 import com.fleets.seguros.handlers.UploadArquivoHandler;
 
 import lombok.RequiredArgsConstructor;
@@ -24,8 +21,7 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class UploadArquivoController {
 
-	@Autowired
-	private UploadArquivoHandler uploadArquivoHandler;
+	private final UploadArquivoHandler uploadArquivoHandler;
 
 	/**
 	 * Método responsável por receber e importar um arquivo (MultipartFile)
@@ -36,10 +32,8 @@ public class UploadArquivoController {
 	 */
 	@PostMapping(value = "/{id}", consumes = {MediaType.MULTIPART_FORM_DATA_VALUE})
 	@PreAuthorize("hasAnyAuthority('ADM','DEV')")
-	public ResponseEntity<Long> uploadArquivo(@RequestParam("file") MultipartFile file, @PathVariable Long id) throws JobExecutionException {
-		final UploadArquivo comando = new UploadArquivo(new CorretorDTO(id), file);
-		
-		return ResponseEntity.status(HttpStatus.CREATED).body(uploadArquivoHandler.handle(comando));
+	public ResponseEntity<Long> uploadArquivo(@RequestParam("file") MultipartFile file, @PathVariable Long id) throws JobExecutionException {		
+		return ResponseEntity.status(HttpStatus.CREATED).body(uploadArquivoHandler.handle(file, id));
 	}
 
 }
