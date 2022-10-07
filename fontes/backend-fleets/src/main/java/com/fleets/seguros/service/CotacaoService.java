@@ -9,6 +9,7 @@ import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import com.fleets.seguros.constante.Constante;
+import com.fleets.seguros.dto.CotacaoDTO;
 import com.fleets.seguros.dto.UploadProcessorDTO;
 import com.fleets.seguros.exception.CadastroRegistroException;
 import com.fleets.seguros.exception.ExcluiRegistroException;
@@ -40,7 +41,7 @@ public class CotacaoService {
 				.orElseThrow(() -> new NaoEncontradoException(Constante.ERRO_ID_NAO_ENCONTRADO + id));
 	}
 
-	public List<Cotacao> findCotacao(String parametro) {
+	public List<CotacaoDTO> findCotacao(String parametro) {
 		return repositoryImpl.findCotacao(parametro);
 	}
 

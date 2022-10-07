@@ -50,9 +50,7 @@ public class CotacaoController {
 	@GetMapping("/filter")
 	@PreAuthorize("hasAnyAuthority('ADM','DEV')")
 	public ResponseEntity<List<CotacaoDTO>> find(@RequestParam String parametro) {
-		List<CotacaoDTO> cotacoes = service.findCotacao(parametro).stream()
-				.map(converter::convertToDto)
-				.collect(Collectors.toList());
+		List<CotacaoDTO> cotacoes = service.findCotacao(parametro);
 		return ResponseEntity.ok(cotacoes);
 	}
 	

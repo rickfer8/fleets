@@ -45,5 +45,6 @@ public class CotacaoDTO {
 	private Double valorFranquiaInformada;
 	private Double comissao;
 	private Double premioInformadoDanosMoraisTerceiros;
+	private String nomeArquivo;
 
 }

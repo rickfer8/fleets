@@ -1,5 +1,7 @@
 package com.fleets.seguros.converter;
 
+import java.util.Objects;
+
 import org.springframework.stereotype.Component;
 
 import com.fleets.seguros.dto.CotacaoDTO;
@@ -83,6 +85,9 @@ public class CotacaoConverter {
 		dto.setValorFranquiaInformada(cotacao.getValorFranquiaInformada());
 		dto.setComissao(cotacao.getComissao());
 		dto.setPremioInformadoDanosMoraisTerceiros(cotacao.getPremioInformadoDanosMoraisTerceiros());
+		if (Objects.nonNull(cotacao.getApolice()) && Objects.nonNull(cotacao.getApolice().getArquivo())) {
+			dto.setNomeArquivo(cotacao.getApolice().getArquivo().getNomeArquivo());
+		}
 		return dto;
 	}
 
